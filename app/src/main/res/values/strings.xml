@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Yumplanner</string>
+<string name="app_first_name">Yum</string>
+<string name="app_second_name">plan</string>
+<string name="app_name">YumPlan</string>
 </resources>
