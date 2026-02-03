@@ -3,7 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF8C32</color>
+    <color name="dark_orange">#F28533</color>
     <color name="text_blak">#1A1A1A</color>
     <color name="slogan_grey">#7F8C8D</color>
-    <color name="smallIcons">#f6c09a</color>>
+    <color name="smallIcons">#f6c09a</color>
+    <color name="background">#f8f7f5</color>
+    <color name="stroke_colour">#E0E0E0</color>
+    <color name="slogan_colour">#5d4d42</color>
+    <color name="dark_goldenrod">#B8860B</color>
+    <color name="gg">#7F8C8D</color>
+    <color name="gold">#C9A45C</color>
 </resources>

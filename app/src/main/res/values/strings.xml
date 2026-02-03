@@ -1,5 +1,28 @@
 <resources>
-<string name="app_first_name">Yum</string>
-<string name="app_second_name">plan</string>
-<string name="app_name">YumPlan</string>
+    <string name="app_first_name">Yum</string>
+    <string name="app_second_name">plan</string>
+    <string name="app_name">YumPlan</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="quote">\"Anyone can cook, but only the fearless can be great.\"</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="emil_hint">Enter your email</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="forget_password">Forget password ?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="new_chef">New chef ?</string>
+    <string name="or_continue_with">or continue with</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started">Get Started</string>
+    <string name="register_quote">Plan your meals and have new answers for your traditional daily question</string>
+    <string name="full_name">Full Name</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="remember">Remembered your account</string>
+    <string name="forget_qote">Don\'t worry! It happens to the best of us. Please enter the email address associated with your account to receive a reset link.</string>
+    <string name="chef_eyad">Chef Eyad</string>
+    <string name="homeqoute">\"Keep your station clear!\"</string>
+    <string name="chef_s_special_of_the_day">Chef\'s Special of the Day</string>
+    <string name="view_recipe">VIEW RECIPE</string>
 </resources>

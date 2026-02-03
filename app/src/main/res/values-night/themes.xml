@@ -3,5 +3,142 @@
     <style name="Base.Theme.Yumplanner" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:windowIsTranslucent">true</item>
+
     </style>
+<!--    <style name="TextInputEditText">
+        &lt;!&ndash;Text input style&ndash;&gt;
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="paddingStart">16dp</item>
+        <item name="paddingEnd">16dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        &lt;!&ndash;text style&ndash;&gt;
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/latoregular</item>
+        &lt;!&ndash;drawable style&ndash;&gt;
+        <item name="android:drawablePadding">20dp</item>
+        &lt;!&ndash;hint style&ndash;&gt;
+        <item name="android:textColorHint">@color/slogan_grey</item>
+        &lt;!&ndash;Text Colour &ndash;&gt;
+        <item name="android:textColor">@color/white</item>
+        <item name="cursorColor">@color/white</item>
+
+
+    </style>
+    <style name="TextInputLayoutOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        &lt;!&ndash;storkeColour&ndash;&gt;
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="strokeColor">@color/stroke_colour</item>
+        <item name="boxStrokeColor" >@color/dark_orange</item>
+
+        &lt;!&ndash;boxStyle&ndash;&gt;
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        &lt;!&ndash;End Icon Style&ndash;&gt;
+        <item name="endIconTint">@color/stroke_colour </item>
+        &lt;!&ndash;Hint style&ndash;&gt;
+        <item name="hintEnabled">false</item>
+
+
+
+    </style>-->
+    <!-- Dark Theme TextInputEditText -->
+    <style name="TextInputEditText">
+        <!-- Size & padding -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="paddingStart">16dp</item>
+        <item name="paddingEnd">16dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+
+        <!-- Text style -->
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/latoregular</item>
+        <item name="android:textColor">#555555</item> <!-- Input/Hint Text -->
+
+        <!-- Hint style -->
+        <item name="android:textColorHint">#555555</item>
+
+        <!-- Cursor -->
+        <item name="cursorColor">#FFFFFF</item>
+
+
+        <!-- Drawable padding -->
+        <item name="android:drawablePadding">20dp</item>
+    </style>
+
+    <!-- Dark Theme TextInputLayout Outlined -->
+    <style name="TextInputLayoutOutlined.Dark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Box style -->
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="boxBackgroundColor">#1A1A1A</item> <!-- Field background -->
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+
+        <!-- Stroke / Border -->
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="strokeColor">#333333</item> <!-- Normal border -->
+        <item name="boxStrokeColor">#F28533</item> <!-- Focused border -->
+
+        <!-- Label style -->
+        <item name="hintTextAppearance">@style/TextInputLayoutHint.Dark</item>
+
+        <!-- End icon -->
+        <item name="endIconTint">#333333</item>
+
+        <!-- Hint enabled -->
+        <item name="hintEnabled">true</item>
+    </style>
+
+    <!-- Hint text style -->
+    <style name="TextInputLayoutHint.Dark" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#999999</item>
+        <item name="android:fontFamily">@font/latoregular</item>
+        <item name="fontStyle" >normal</item>
+    </style>
+
+    <style name="BtnStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:fontFamily">@font/latoregular</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:elevation">16dp</item>
+        <item name="backgroundTint">@color/dark_orange</item>
+        <item name="rippleColor">@color/slogan_grey</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    <style name="TextBtn" parent="Widget.MaterialComponents.Button.TextButton" >
+        <item name="fontFamily">@font/latoregular</item>
+        <item name="fontWeight">600</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/dark_orange</item>
+        <item name="textAllCaps">false</item>
+
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+
+
+    </style>
+
+    <style name="BackGround"> <item name="backgroundColor">@color/black</item>></style>
+<!--    <style name="RoundedImage12">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>-->
 </resources>

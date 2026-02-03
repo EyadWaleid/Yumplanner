@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item
+            android:id="@+id/homeFragment"
+            android:icon="@drawable/catagories"
+            android:enabled="true"
+            android:iconTint="@color/dark_orange"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/plannerFragment"
+            android:enabled="true"
+            android:icon="@drawable/calender"
+            android:iconTint="@color/dark_orange"
+            android:title="Planner" />
+    <item
+        android:id="@+id/FavFragment"
+        android:enabled="true"
+    android:icon="@drawable/outline_favorite_24"
+    android:iconTint="@color/dark_orange"
+    android:title="Fav" ></item>
+
+        <item
+            android:id="@+id/profileFragment"
+            android:enabled="true"
+            android:icon="@drawable/userchef"
+            android:iconTint="@color/dark_orange"
+            android:title="Profile" />
+    </menu>
+
