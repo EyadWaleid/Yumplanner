@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-
+  implementation(libs.androidyoutubeplayer)
     implementation(libs.lottie)
     implementation(libs.appcompat)
     implementation(libs.material)

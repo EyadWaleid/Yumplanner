@@ -1,4 +1,4 @@
-package com.example.yumplanner;
+package com.example.yumplanner.presentation.Auth.view;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.yumplanner.R;
 
 
 public class ForgetPasswordPage extends Fragment {

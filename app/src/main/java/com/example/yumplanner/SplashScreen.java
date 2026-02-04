@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.yumplanner.presentation.Auth.view.AuthenticationActivity;
+
 public class SplashScreen extends AppCompatActivity {
     Handler handler=new Handler();
     Runnable runnable;

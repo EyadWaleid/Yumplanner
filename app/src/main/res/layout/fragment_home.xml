@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".presentation.Home.view.HomeFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -17,7 +17,6 @@
             android:background="@color/background"
             android:padding="20dp">
 
-            <!-- Welcome back -->
             <TextView
                 android:id="@+id/textWelcome"
                 android:layout_width="wrap_content"
@@ -27,7 +26,7 @@
                 android:textColor="@color/slogan_colour"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/chef_name"
@@ -37,7 +36,7 @@
                 android:text="@string/chef_eyad"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textWelcome"/>
+                app:layout_constraintTop_toBottomOf="@id/textWelcome" />
 
             <TextView
                 android:id="@+id/textQuote"
@@ -49,7 +48,7 @@
                 android:textColor="@color/dark_goldenrod"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chef_name"/>
+                app:layout_constraintTop_toBottomOf="@id/chef_name" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/special_recipe"
@@ -58,16 +57,17 @@
                 android:layout_marginTop="20dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="12dp"
-                app:strokeColor="@color/dark_goldenrod"
-                app:strokeWidth="1dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textQuote">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textQuote"
+                app:strokeColor="@color/dark_goldenrod"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:background="@drawable/layout_stroke"
                     android:orientation="vertical"
                     android:paddingHorizontal="24dp"
                     android:paddingVertical="12dp">
@@ -77,23 +77,23 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/catagories"
-                        app:tint="@color/dark_goldenrod"/>
+                        app:tint="@color/dark_goldenrod" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:fontFamily="@font/ebgaramonditalic"
+                        android:gravity="center"
                         android:text="@string/chef_s_special_of_the_day"
                         android:textSize="26sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="108dp"
                         android:layout_height="1dp"
                         android:layout_gravity="center"
                         android:layout_marginVertical="8dp"
-                        android:background="@color/dark_goldenrod"/>
+                        android:background="@color/dark_goldenrod" />
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
@@ -101,7 +101,8 @@
                         android:layout_marginTop="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/unnamed"
-                        app:shapeAppearanceOverlay="@style/RoundedImage12"/>
+
+                        app:shapeAppearanceOverlay="@style/RoundedImage12" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -109,7 +110,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/garamond"
                         android:text="Classic Ratatouille"
-                        android:textSize="22sp"/>
+                        android:textSize="22sp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnViewRecipe"
@@ -119,17 +120,20 @@
                         android:layout_marginTop="12dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:text="@string/view_recipe"
-                        android:textAllCaps="true"
-                        android:textSize="14sp"
                         android:letterSpacing="0.1"
-                        android:textColor="@color/gold"
                         android:paddingHorizontal="24dp"
                         android:paddingVertical="10dp"
+                        android:text="@string/view_recipe"
+                        android:clickable="true"
+                        app:rippleColor="@color/dark_orange"
+                        android:focusable="true"
+                        android:textAllCaps="true"
+                        android:textColor="@color/gold"
+                        android:textSize="14sp"
+                        app:backgroundTint="@android:color/transparent"
                         app:cornerRadius="2dp"
-                        app:strokeWidth="1dp"
                         app:strokeColor="#C9A45C"
-                        app:backgroundTint="@android:color/transparent"/>
+                        app:strokeWidth="1dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -142,21 +146,21 @@
                 android:text="Some Recommendations"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/special_recipe"/>
+                app:layout_constraintTop_toBottomOf="@id/special_recipe" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recommendationRecycleView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
+                android:paddingBottom="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textRecommendations" />
+                app:layout_constraintTop_toBottomOf="@+id/textRecommendations" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

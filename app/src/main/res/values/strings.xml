@@ -25,4 +25,10 @@
     <string name="homeqoute">\"Keep your station clear!\"</string>
     <string name="chef_s_special_of_the_day">Chef\'s Special of the Day</string>
     <string name="view_recipe">VIEW RECIPE</string>
+    <string name="bleskiver">Æbleskiver</string>
+    <string name="classic_beef_tacos">Classic Beef Tacos</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="_12_items">12 items</string>
+    <string name="search_here">Search here ..</string>
+    <string name="search_for_recipes_or_ingredients">Search for recipes or ingredients...</string>
 </resources>

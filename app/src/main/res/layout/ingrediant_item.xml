@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:padding="20dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ingrediant_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/unnamed"
+        app:shapeAppearanceOverlay="@style/CircularImage" />
+
+    <TextView
+        android:id="@+id/ingrediant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/latobold"
+
+        android:textSize="16sp"
+
+        android:text="onion" />
+
+    <TextView
+        android:id="@+id/ingrediant_amount"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="12sp"
+        android:fontFamily="@font/latoregular"
+        android:textColor="@color/slogan_grey"
+        android:layout_height="wrap_content"
+        android:text="2 slices" />
+
+</LinearLayout>

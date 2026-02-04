@@ -1,4 +1,4 @@
-package com.example.yumplanner;
+package com.example.yumplanner.presentation.Auth.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.yumplanner.presentation.Home.view.MainHomeActivty;
+import com.example.yumplanner.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -61,18 +63,18 @@ public class LoginPage extends Fragment {
                 passwordLayout.setError("Enter your password");
                 return;
             }
-            Intent intent = new Intent(requireContext(), MainActivity.class);
+            Intent intent = new Intent(requireContext(), MainHomeActivty.class);
             startActivity(intent);
             requireActivity().finish();
 
         });
         forgetPasswordBtn.setOnClickListener(v -> {
             NavController controller= Navigation.findNavController(getView());
-            controller.navigate(com.example.yumplanner.LoginPageDirections.actionLoginPageToForgetPasswordPage());
+            controller.navigate(LoginPageDirections.actionLoginPageToForgetPasswordPage());
         });
         signUpBtn.setOnClickListener(v -> {
             NavController controller= Navigation.findNavController(getView());
-            controller.navigate(com.example.yumplanner.LoginPageDirections.actionLoginPageToRegisterPage());
+            controller.navigate(LoginPageDirections.actionLoginPageToRegisterPage());
 
         });
 

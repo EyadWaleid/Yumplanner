@@ -25,6 +25,7 @@ fragment = { group = "androidx.fragment", name = "fragment", version.ref = "frag
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidyoutubeplayer={group="com.pierfrancescosoffritti.androidyoutubeplayer",name="core",version="12.1.0"}
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigationFragment" }
