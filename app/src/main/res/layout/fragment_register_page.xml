@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.Auth.view.RegisterPage">
+    tools:context=".presentation.Auth.view.register.RegisterPage">
 <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"     android:background="@color/background">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -116,7 +116,6 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/registerEmailInput"
-                android:inputType="textPassword"
                 style="@style/TextInputEditText"
                 android:hint="@string/emil_hint"
 
@@ -200,7 +199,7 @@
             android:layout_marginEnd="24dp"
 
             android:layout_marginBottom="40dp"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
 
 
             app:backgroundTint="@color/dark_orange"
@@ -314,6 +313,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
+    <include
+        android:id="@+id/registerProgress"
+        layout="@layout/progress_bar"/>
 
 </FrameLayout>

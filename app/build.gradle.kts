@@ -1,6 +1,8 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.safeargs)
+    alias(libs.plugins.firbaseservice)
 
 }
 
@@ -34,7 +36,16 @@ android {
 }
 
 dependencies {
-  implementation(libs.androidyoutubeplayer)
+    implementation(libs.retrofit)
+    implementation(libs.room)
+    implementation(libs.glide)
+    implementation(libs.converterGson)
+    implementation(libs.credentials)
+    implementation(libs.credentialsplay)
+    implementation(libs.googleid)
+    implementation(platform(libs.firbassebom))
+    implementation(libs.firebase)
+    implementation(libs.androidyoutubeplayer)
     implementation(libs.lottie)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -46,5 +57,7 @@ dependencies {
     implementation(libs.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
+    annotationProcessor ("androidx.room:room-compiler:2.8.4")
+
     androidTestImplementation(libs.espresso.core)
 }

@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yumplanner.R;
-import com.example.yumplanner.presentation.Auth.view.LoginPageDirections;
 import com.example.yumplanner.presentation.details.view.DetialActivity;
 import com.google.android.material.button.MaterialButton;
 

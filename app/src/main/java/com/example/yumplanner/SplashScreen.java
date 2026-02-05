@@ -11,6 +11,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.yumplanner.presentation.Auth.view.AuthenticationActivity;
+import com.example.yumplanner.presentation.Home.view.MainHomeActivty;
+import com.example.yumplanner.utiles.PrefsHelper;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
     Handler handler=new Handler();
@@ -19,6 +24,8 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash_screen);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -27,10 +34,19 @@ public class SplashScreen extends AppCompatActivity {
             return insets;
         });
         runnable=new Runnable() {
+
             @Override
             public void run() {
-                Intent intent=new Intent(SplashScreen.this, AuthenticationActivity.class);
-                startActivity(intent);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                if (user==null) {
+                    Intent intent=new Intent(SplashScreen.this, AuthenticationActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent=new Intent(SplashScreen.this, MainHomeActivty.class);
+                    startActivity(intent);
+                }
+
                 finish();
             }
         };

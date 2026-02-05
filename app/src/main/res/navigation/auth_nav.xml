@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginPage"
-        android:name="com.example.yumplanner.presentation.Auth.view.LoginPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.login.LoginPage"
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login_page" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordPage"
-        android:name="com.example.yumplanner.presentation.Auth.view.ForgetPasswordPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.forgetpassword.ForgetPasswordPage"
         android:label="fragment_forget_password_page"
         tools:layout="@layout/fragment_forget_password_page" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerPage"
-        android:name="com.example.yumplanner.presentation.Auth.view.RegisterPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.register.RegisterPage"
         android:label="fragment_register_page"
         tools:layout="@layout/fragment_register_page" >
         <action
