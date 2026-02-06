@@ -1,16 +1,20 @@
 package com.example.yumplanner.presentation.details.view;
 
-import static java.security.AccessController.getContext;
+import static androidx.core.content.ContentProviderCompat.requireContext;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
+import android.util.Log;
+import android.view.View;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,53 +22,156 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumplanner.R;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.example.yumplanner.data.dto.DetialMealDTO;
+import com.example.yumplanner.data.model.DetailMeal;
+import com.example.yumplanner.data.model.Ingredient;
+import com.example.yumplanner.presentation.details.presenter.DetialPresenter;
+import com.example.yumplanner.presentation.details.presenter.DetialPresenterImp;
+import com.example.yumplanner.utiles.imageHelper.ImageHelper;
+import com.google.android.material.button.MaterialButton;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-public class DetialActivity extends AppCompatActivity {
+import java.util.Calendar;
+import java.util.List;
+
+public class DetialActivity extends AppCompatActivity implements  DetialView {
     RecyclerView recyclerView;
     ImageButton backBtn;
+    DetialPresenter detialPresenter;
+    StepsCookingAdaptor stepsCookingAdaptor;
     YouTubePlayerView youtubeWebView;
     RecyclerView cookingSteps;
-    WebView webView;
-    @SuppressLint("SetJavaScriptEnabled")
+    TextView mealName;
+    ImageView mealImage;
+    IngrediantAdaptor ingrediantAdaptor;
+    ConstraintLayout detialView;
+    ConstraintLayout calender;
+    MaterialButton planMeal;
+    CalendarView calendarView;
+    View loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_detial);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        EdgeToEdge.enable(this);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.detialMain), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        backBtn=findViewById(R.id.btnBack);
-        recyclerView =findViewById(R.id.ingrediant_view);
-         webView=findViewById(R.id.youtubeWebView);
-        cookingSteps=findViewById(R.id.steps_view);
+        inizilizeViews();
+
+        detialPresenter=new DetialPresenterImp(this);
+        checkDeliverdData();
+
+
+        backBtn.setOnClickListener(v -> finish());
+
+        getLifecycle().addObserver(youtubeWebView);
+        planMeal.setOnClickListener(
+                v -> {
+                    detialPresenter.addCalender();
+
+                }
+        );
+
+    }
+    private void  checkDeliverdData(){
+        if (getIntent().hasExtra("MEAL_OBJECT")) {
+            DetialMealDTO meal = getIntent().getParcelableExtra("MEAL_OBJECT");
+            detialPresenter.getData(meal);
+        }
+        else if (getIntent().hasExtra("MEAL_ID")) {
+            String mealId = getIntent().getParcelableExtra("MEAL_ID");
+            detialPresenter.getDataById(mealId);
+        }
+        else {
+            Toast.makeText(this, "Error: No data", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+    private  void inizilizeViews(){
+        loader=findViewById(R.id.loadingDetial);
+        backBtn = findViewById(R.id.btnBack);
+        calender=findViewById(R.id.calenderFragment);
+        detialView=findViewById(R.id.detialView);
+        recyclerView = findViewById(R.id.ingrediant_view);
+        youtubeWebView = findViewById(R.id.youtubeWebView);
+        cookingSteps = findViewById(R.id.steps_view);
+        mealImage=findViewById(R.id.headerImage);
+        mealName=findViewById(R.id.txtTitle);
+        planMeal=findViewById(R.id.calenderShower);
+        calendarView=findViewById(R.id.calender);
+        cookingSteps.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        cookingSteps.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(false);
+
+        stepsCookingAdaptor =new StepsCookingAdaptor();
+        cookingSteps.setAdapter(stepsCookingAdaptor);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         );
-        recyclerView.setAdapter(new IngrediantAdaptor());
-       /* String video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/watch?v=1IszT_guI08\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>\n";
-       webView.getSettings().setJavaScriptEnabled(true);
-       webView.setWebChromeClient(new WebChromeClient());
-        webView.loadData(video, "text/html","utf-8");
-*/
-        cookingSteps.setLayoutManager( new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        cookingSteps.setNestedScrollingEnabled(false);
-        cookingSteps.setAdapter(new StepsCookingAdaptor());
-        backBtn.setOnClickListener(v -> finish());
+         ingrediantAdaptor= new IngrediantAdaptor();
+        recyclerView.setAdapter(ingrediantAdaptor);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+
+        calendarView.setMinDate(today.getTimeInMillis());
 
 
     }
-    public String extractVideoId(String fullUrl) {
-        if (fullUrl.contains("v=")) {
-            return fullUrl.split("v=")[1].split("&")[0];
-        } else if (fullUrl.contains("embed/")) {
-            return fullUrl.split("embed/")[1].split("\\?")[0];
-        }
-        return fullUrl;
+    @Override
+    public void setData(String image, String mealName) {
+        ImageHelper.loadImage(mealImage,image,mealImage);
+        this.mealName.setText(mealName);
     }
+    @Override
+    public void setIngredients(List<Ingredient> list) {
+         ingrediantAdaptor.setIngredientsList(list);
+
+    }
+    @Override
+    public void setSteps(List<String>steps) {
+        stepsCookingAdaptor.setStepList(steps);
+    }
+    @Override
+    public void setVideo() {
+
+    }
+
+    @Override
+    public void showLoader() {
+        loader.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void hideLoader() {
+        loader.setVisibility(View.INVISIBLE);
+
+    }
+
+    @Override
+    public void hideView() {
+        detialView.setVisibility(ConstraintLayout.INVISIBLE);
+    }
+    @Override
+    public void showView() {
+        detialView.setVisibility(ConstraintLayout.VISIBLE);
+    }
+
+    @Override
+    public void showError() {
+        detialView.setVisibility(ConstraintLayout.INVISIBLE);
+    }
+
+    @Override
+    public void showCalender() {
+        calender.setVisibility(ConstraintLayout.VISIBLE);
+
+    }
+
+
 }

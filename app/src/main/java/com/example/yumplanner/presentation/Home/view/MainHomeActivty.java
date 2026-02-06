@@ -20,9 +20,6 @@ public class MainHomeActivty extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_home_activty);
@@ -38,6 +35,11 @@ public class MainHomeActivty extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+
         NavigationUI.setupWithNavController(bottomNav, navController);
+        bottomNav.setSaveEnabled(true);
+
+
     }
 }

@@ -9,9 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yumplanner.R;
+import com.example.yumplanner.data.model.Meal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecommendationsAdaptor extends RecyclerView.Adapter<RecommendationsAdaptor.RecommendationHolder> {
+    List<Meal>dessertMeals=new ArrayList<>();
     @NonNull
     @Override
     public RecommendationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -22,30 +28,32 @@ public class RecommendationsAdaptor extends RecyclerView.Adapter<Recommendations
 
     @Override
     public void onBindViewHolder(@NonNull RecommendationHolder holder, int position) {
-        holder.imageView.setImageResource(R.drawable.unnamed);
-        holder.foodName.setText("Food");
-
+        Meal dessert=dessertMeals.get(position);
+        holder.bindData(dessert);
     }
-
     @Override
     public int getItemCount() {
-        return 5;
+        return dessertMeals.size();
     }
-
     public class  RecommendationHolder extends  RecyclerView.ViewHolder {
         ImageView imageView;
         TextView foodName;
-
-        RecommendationHolder(View view){
-            super(view);
-            imageView=view.findViewById(R.id.recipeImage);
-            foodName=view.findViewById(R.id.recipeTitle);
-
-
-
-
+        RecommendationHolder(View itemView){
+            super(itemView);
+            imageView=itemView.findViewById(R.id.recipeImage);
+            foodName=itemView.findViewById(R.id.recipeTitle);
+        }
+        public  void bindData(Meal dessert){
+            Glide.with(itemView)
+                    .load(dessert.getMealUrl())
+                    .into(imageView);
+            foodName.setText(dessert.getMealName());
         }
 
     }
+    public void setDessertMeals(List<Meal> meals){
+        dessertMeals=meals;
+    }
+
 }
 

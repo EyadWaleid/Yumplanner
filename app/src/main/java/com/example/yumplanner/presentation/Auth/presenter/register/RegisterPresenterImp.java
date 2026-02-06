@@ -36,7 +36,7 @@ public class RegisterPresenterImp  implements  RegisterPresenter{
             @Override
             public void onError(String message) {
                 registerView.hideLoading();
-                registerView.showSnackBarFailure("message");
+                registerView.showSnackBarFailure(message);
 
             }
         });
