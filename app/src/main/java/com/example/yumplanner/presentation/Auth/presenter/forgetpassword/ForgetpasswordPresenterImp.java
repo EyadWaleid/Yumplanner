@@ -19,21 +19,16 @@ public class ForgetpasswordPresenterImp  implements  ForgetPasswordPresenter{
     @Override
     public void forgetPassword(String email) {
         authRepo.forgetPassword(email, new ForgetPaswordCallback() {
-
-
             @Override
             public void OnSuccessForgetPassword() {
+                forgetpasswordView.showSuccess();
                 toLogin();
-
             }
-
             @Override
             public void onError(String message) {
-
+                   forgetpasswordView.showFailure(message);
             }
         });
-
-
     }
 
     @Override

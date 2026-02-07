@@ -10,7 +10,6 @@ public class Country implements SearchableItems{
     public String getDisplayName() {
         return name;
     }
-
     @Override
     public int getItemType() {
         return 1;
