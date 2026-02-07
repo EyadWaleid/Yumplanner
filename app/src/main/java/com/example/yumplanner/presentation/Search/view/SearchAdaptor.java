@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumplanner.R;
-import com.example.yumplanner.presentation.Search.model.Catagorey;
+import com.example.yumplanner.presentation.Search.model.Category;
 import com.example.yumplanner.presentation.Search.model.Country;
 import com.example.yumplanner.presentation.Search.model.Ingridents;
 import com.example.yumplanner.presentation.Search.model.SearchableItems;
@@ -32,7 +32,7 @@ public class SearchAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         SearchableItems item = displayList.get(position);
         if (item instanceof Country) return TYPE_COUNTRY;
         if (item instanceof Ingridents) return TYPE_INGREDIENT;
-        if (item instanceof Catagorey) return TYPE_CATEGORY;
+        if (item instanceof Category) return TYPE_CATEGORY;
         return -1;
     }
 
@@ -67,7 +67,7 @@ public class SearchAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ((CountryHolder) holder).textView.setText(item.getDisplayName());
         } else if (holder instanceof IngredientHolder && item instanceof Ingridents) {
             ((IngredientHolder) holder).textView.setText(item.getDisplayName());
-        } else if (holder instanceof CategoryHolder && item instanceof Catagorey) {
+        } else if (holder instanceof CategoryHolder && item instanceof Category) {
             ((CategoryHolder) holder).textView.setText(item.getDisplayName());
         }
     }

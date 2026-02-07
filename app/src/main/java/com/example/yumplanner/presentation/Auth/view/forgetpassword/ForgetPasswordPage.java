@@ -18,6 +18,7 @@ import com.example.yumplanner.R;
 import com.example.yumplanner.presentation.Auth.presenter.forgetpassword.ForgetPasswordPresenter;
 import com.example.yumplanner.presentation.Auth.presenter.forgetpassword.ForgetpasswordPresenterImp;
 import com.example.yumplanner.presentation.Auth.view.register.RegisterPageDirections;
+import com.example.yumplanner.utiles.SnackbarHelper;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -53,5 +54,28 @@ public class ForgetPasswordPage extends Fragment implements ForgetpasswordView {
     public void navigateToLogin() {
         NavController controller= Navigation.findNavController(getView());
         controller.navigate(ForgetPasswordPageDirections.actionForgetPasswordPageToLoginPage());
+    }
+
+    @Override
+    public void showLoading() {
+
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showSuccess() {
+        SnackbarHelper.show(getView(),"Link send to your email", SnackbarHelper.Type.SUCCESS);
+
+    }
+
+    @Override
+    public void showFailure(String message) {
+        SnackbarHelper.show(getView(),message, SnackbarHelper.Type.ERROR);
+
     }
 }

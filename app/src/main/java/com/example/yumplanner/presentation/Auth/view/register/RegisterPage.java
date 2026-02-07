@@ -1,5 +1,6 @@
 package com.example.yumplanner.presentation.Auth.view.register;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.example.yumplanner.R;
 import com.example.yumplanner.presentation.Auth.presenter.register.RegisterPresenter;
 import com.example.yumplanner.presentation.Auth.presenter.register.RegisterPresenterImp;
+import com.example.yumplanner.presentation.Home.view.HomeActivity;
 import com.example.yumplanner.utiles.SnackbarHelper;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -54,7 +56,7 @@ public class RegisterPage extends Fragment implements RegisterView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        registerPresenter = new RegisterPresenterImp(requireActivity().getApplication(), this);
+        registerPresenter = new RegisterPresenterImp(requireActivity().getApplication(), this,this.requireActivity());
         signUpBtn.setOnClickListener(v -> {
 
             String name = nameInput.getText().toString().trim();
@@ -122,6 +124,9 @@ public class RegisterPage extends Fragment implements RegisterView {
         loginBtn.setOnClickListener(v -> {
             registerPresenter.login();
         });
+        googlebtn.setOnClickListener(v -> {
+            registerPresenter.regeisterByGoogle();
+        });
     }
 
     @Override
@@ -138,9 +143,7 @@ public class RegisterPage extends Fragment implements RegisterView {
     @Override
     public void showSnackBarSuccess(String message) {
         SnackbarHelper.show(getView(), message, SnackbarHelper.Type.SUCCESS);
-
     }
-
     @Override
     public void showSnackBarFailure(String message) {
         SnackbarHelper.show(getView(), message, SnackbarHelper.Type.ERROR);
@@ -162,6 +165,7 @@ public class RegisterPage extends Fragment implements RegisterView {
         passwordRepeatInput = view.findViewById(R.id.passwordRegistrationRepatInput);
         passwordRepeatLayout = view.findViewById(R.id.passwordRegistrationRepatLayout);
         progressBar = view.findViewById(R.id.registerProgress);
+        googlebtn=view.findViewById(R.id.googleBtnReg);
     }
 
     @Override
@@ -170,4 +174,15 @@ public class RegisterPage extends Fragment implements RegisterView {
         controller.navigate(RegisterPageDirections.actionRegisterPageToLoginPage());
 
     }
+
+    @Override
+    public void navigateToHome() {
+        Intent intent = new Intent(requireContext(), HomeActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+
+
+    }
+
+
 }

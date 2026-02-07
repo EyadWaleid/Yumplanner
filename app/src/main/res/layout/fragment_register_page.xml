@@ -309,7 +309,7 @@
             app:layout_constraintStart_toEndOf="@+id/continueText"
             app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/googleBtn"
+            android:id="@+id/googleBtnReg"
             style="@style/BtnStyle"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
@@ -327,40 +327,41 @@
             app:layout_constraintTop_toBottomOf="@+id/continueText"
             app:strokeColor="@color/dark_orange"
             app:strokeWidth="1dp" />
+
         <LinearLayout
 
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
 
-            app:layout_constraintTop_toBottomOf="@+id/googleBtn">
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/googleBtnReg">
 
 
             <TextView
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:fontFamily="@font/latoregular"
+                android:gravity="center"
                 android:text="Has account?"
                 android:textColor="@color/slogan_colour"
                 android:textSize="15sp" />
 
             <Button
-                android:gravity="center"
                 android:id="@+id/toLoginBtn"
                 style="@style/TextBtn"
-                android:textSize="15sp"
                 android:layout_marginEnd="10dp"
-                android:text="Login" />
+                android:gravity="center"
+                android:text="Login"
+                android:textSize="15sp" />
 
         </LinearLayout>
 

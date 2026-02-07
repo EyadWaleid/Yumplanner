@@ -6,4 +6,6 @@ public interface RegisterView {
     void showSnackBarSuccess(String message);
     void showSnackBarFailure(String message );
     void navigateToLogin();
+    void navigateToHome();
+
 }

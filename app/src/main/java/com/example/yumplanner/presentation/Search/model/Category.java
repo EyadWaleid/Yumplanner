@@ -1,9 +1,9 @@
 package com.example.yumplanner.presentation.Search.model;
 
-public class Catagorey implements  SearchableItems{
+public class Category implements  SearchableItems{
     String name;
     String image;
-    public  Catagorey(String name){
+    public Category(String name){
         this.name=name;
     }
     @Override

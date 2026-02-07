@@ -90,7 +90,7 @@ public class AuthenticatDataSource {
     public void loginWithGoogle(Context context, AuthCallback callback) {
         //request to get the token to provide  to firebase
         GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
-                .setFilterByAuthorizedAccounts(true)
+                .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(context.getString(R.string.default_web_client_id))
                 .build();
         //showing the google accounts only

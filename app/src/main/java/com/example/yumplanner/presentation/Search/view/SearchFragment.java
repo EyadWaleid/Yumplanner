@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yumplanner.R;
-import com.example.yumplanner.presentation.Search.model.Catagorey;
+import com.example.yumplanner.presentation.Search.model.Category;
 import com.example.yumplanner.presentation.Search.model.Country;
 import com.example.yumplanner.presentation.Search.model.Ingridents;
 import com.example.yumplanner.presentation.Search.model.SearchableItems;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -110,10 +108,10 @@ public class SearchFragment extends Fragment {
     private void loadCategoryData() {
         adapter.setData(new ArrayList<>());
         List<SearchableItems> ingredients = new ArrayList<>();
-        ingredients.add(new Catagorey("Chicken"));
-        ingredients.add(new Catagorey("Tomato"));
-        ingredients.add(new Catagorey("Onion"));
-        ingredients.add(new Catagorey("Garlic"));
+        ingredients.add(new Category("Chicken"));
+        ingredients.add(new Category("Tomato"));
+        ingredients.add(new Category("Onion"));
+        ingredients.add(new Category("Garlic"));
         adapter.setData(ingredients);
     }
 }
