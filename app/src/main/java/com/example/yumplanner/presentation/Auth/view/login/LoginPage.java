@@ -1,14 +1,12 @@
 package com.example.yumplanner.presentation.Auth.view.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,19 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.yumplanner.presentation.Auth.presenter.login.LoginPresenter;
 import com.example.yumplanner.presentation.Auth.presenter.login.LoginPresenterImp;
-import com.example.yumplanner.presentation.Home.view.MainHomeActivty;
+import com.example.yumplanner.presentation.Home.view.HomeActivity;
 import com.example.yumplanner.R;
 import com.example.yumplanner.utiles.SnackbarHelper;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPage extends Fragment implements LoginView {
     TextInputLayout emailLayout;
@@ -40,11 +35,11 @@ public class LoginPage extends Fragment implements LoginView {
     TextInputEditText passwordInput;
     Button forgetPasswordBtn;
     Button signUpBtn;
+    TextView emailInputError;
+    TextView passwordInputError;
     MaterialButton loginBtn;
     MaterialButton googlebtn;
     LoginPresenter loginPresenter;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +55,9 @@ public class LoginPage extends Fragment implements LoginView {
     signUpBtn=view.findViewById(R.id.signup_btn);
     progressBar=view.findViewById(R.id.loadingOverlay);
     googlebtn=view.findViewById(R.id.googleBtn);
+    emailInputError=view.findViewById(R.id.emailInputError);
+    passwordInputError=view.findViewById(R.id.passwordInputError);
+
 
          return  view;
     }
@@ -75,26 +73,35 @@ public class LoginPage extends Fragment implements LoginView {
             String password = passwordInput.getText().toString().trim();
 
             if(email.isEmpty()){
-                emailLayout.setError("Enter your email");
+                emailInputError.setVisibility(TextView.VISIBLE);
+                emailInputError.setText("Enter your  email");
+                emailLayout.setError("Enter your  email");
                 return;
             }
 
             if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                emailLayout.setError("Enter a valid email");
+                emailInputError.setVisibility(TextView.VISIBLE);
+                emailInputError.setText("Enter a valid email");
+                emailLayout.setError("Enter your  email");
                 return;
             } else {
-                emailLayout.setError(null);
-            }
+                emailInputError.setVisibility(TextView.INVISIBLE);
+                emailLayout.setError(null);            }
 
             if(password.isEmpty()){
-                passwordLayout.setError("Enter your password");
+                passwordLayout.setBoxStrokeColor(ContextCompat.getColor(requireContext(), R.color.stroke_colour));
+                passwordInputError.setVisibility(TextView.VISIBLE);
+                emailLayout.setError(null);
                 return;
             }
 
             if(password.length() < 6){
-                passwordLayout.setError("Password must be at least 6 characters");
+                passwordLayout.setError("null");
+                passwordInputError.setVisibility(TextView.VISIBLE);
+                passwordInputError.setText("Password must be at least 6 characters");
                 return;
             } else {
+                passwordInputError.setVisibility(TextView.INVISIBLE);
                 passwordLayout.setError(null);
             }
 
@@ -141,7 +148,7 @@ public class LoginPage extends Fragment implements LoginView {
 
     @Override
     public void navigateToHome() {
-                    Intent intent = new Intent(requireContext(), MainHomeActivty.class);
+                    Intent intent = new Intent(requireContext(), HomeActivity.class);
             startActivity(intent);
             requireActivity().finish();
     }

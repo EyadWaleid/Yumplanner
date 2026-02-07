@@ -11,8 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.yumplanner.presentation.Auth.view.AuthenticationActivity;
-import com.example.yumplanner.presentation.Home.view.MainHomeActivty;
-import com.example.yumplanner.utiles.PrefsHelper;
+import com.example.yumplanner.presentation.Home.view.HomeActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +42,7 @@ public class SplashScreen extends AppCompatActivity {
                     Intent intent=new Intent(SplashScreen.this, AuthenticationActivity.class);
                     startActivity(intent);
                 } else {
-                    Intent intent=new Intent(SplashScreen.this, MainHomeActivty.class);
+                    Intent intent=new Intent(SplashScreen.this, HomeActivity.class);
                     startActivity(intent);
                 }
 
