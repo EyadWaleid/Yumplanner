@@ -2,6 +2,7 @@ package com.example.yumplanner.presentation.Auth.presenter.register;
 
 import android.app.Activity;
 import android.app.Application;
+import android.util.Log;
 
 import com.example.yumplanner.data.dataSource.auth.remote.AuthCallback;
 import com.example.yumplanner.data.dataSource.auth.repo.AuthRepo;
@@ -23,20 +24,22 @@ public class RegisterPresenterImp  implements  RegisterPresenter{
 
     }
     @Override
-    public void register(String email, String password) {
+    public void register(String email, String password,String name) {
         registerView.showLoading();
         authRepo.signUp(email, password, new AuthCallback() {
             @Override
             public void onSuccess(FirebaseUser user) {
                 registerView.hideLoading();
-                authRepo.checkUser(new User(user.getUid(), user.getDisplayName(), user.getEmail()));
+                authRepo.checkUser(new User(user.getUid(), name, user.getEmail()));
+
+
                 registerView.showSnackBarSuccess("Register succeed");
                 registerView.navigateToLogin();
              }
             @Override
             public void onError(String message) {
                 registerView.hideLoading();
-                registerView.showSnackBarFailure("message");
+                registerView.showSnackBarFailure(message);
 
             }
         });

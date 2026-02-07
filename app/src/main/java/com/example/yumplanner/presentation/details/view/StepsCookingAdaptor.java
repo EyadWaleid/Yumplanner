@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumplanner.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StepsCookingAdaptor extends RecyclerView.Adapter<StepsCookingAdaptor.StepViewHolder> {
 
 
-
+   List<String>steps=new ArrayList<>();
     @NonNull
     @Override
     public StepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,18 +26,22 @@ public class StepsCookingAdaptor extends RecyclerView.Adapter<StepsCookingAdapto
 
     @Override
     public void onBindViewHolder(@NonNull StepViewHolder holder, int position) {
-        holder.tvStepNumber.setText(String.valueOf(position));
-        holder.tvStepTitle.setText("Start Meal");
+        holder.tvStepNumber.setText(String.valueOf(position+1));
+
+        holder.tvStepTitle.setText(steps.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return steps.size();
+    }
+    public  void setStepList(List<String>steps){
+        this.steps=steps;
+
     }
 
     public static class StepViewHolder extends RecyclerView.ViewHolder {
         TextView tvStepNumber, tvStepTitle;
-
         public StepViewHolder(@NonNull View itemView) {
             super(itemView);
             tvStepNumber = itemView.findViewById(R.id.tvStepNumber);

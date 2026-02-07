@@ -5,47 +5,132 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yumplanner.R;
+import com.example.yumplanner.data.dto.DetialMealDTO;
+import com.example.yumplanner.data.model.DetailMeal;
+import com.example.yumplanner.data.model.Meal;
+import com.example.yumplanner.presentation.Home.presenter.HomePresenter;
+import com.example.yumplanner.presentation.Home.presenter.HomePresenterImp;
 import com.example.yumplanner.presentation.details.view.DetialActivity;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.List;
+public class HomeFragment extends Fragment implements HomeView,DessertOnClickListener {
 
-public class HomeFragment extends Fragment {
-
-  RecyclerView recyclerView;
-
-  MaterialButton viewRecipe;
-  MaterialButton viewFood;
-
+    private HomePresenter presenter;
+    private ConstraintLayout background;
+    private LinearLayout error;
+    private RecyclerView recyclerView;
+    private MaterialButton viewRecipe;
+    private ShapeableImageView mealImage;
+    private TextView mealName;
+    private NestedScrollView nestedScrollView;
+    private View loadingView;
+   private      RecommendationsAdaptor adaptor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         View view=inflater.inflate(R.layout.fragment_home, container, false);
-     return  view;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-         recyclerView = view.findViewById(R.id.recommendationRecycleView);
-        viewRecipe=view.findViewById(R.id.btnViewRecipe);
+    public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+        init( rootView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        RecommendationsAdaptor adapter = new RecommendationsAdaptor();
-        recyclerView.setAdapter(adapter);
-        viewRecipe.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), DetialActivity.class);
-            startActivity(intent);
+         adaptor=new RecommendationsAdaptor(this);
+        presenter = new HomePresenterImp(this);
+        presenter.getRandomData();
+        recyclerView.setAdapter(adaptor);
+        viewRecipe.setOnClickListener(v ->{
+            presenter.reachDetails();
 
         });
+    }
+    private void init(View rootView){
+        nestedScrollView = rootView.findViewById(R.id.homeView);
+        mealImage = rootView.findViewById(R.id.randomMealImage);
+        mealName = rootView.findViewById(R.id.mealNmae);
+        recyclerView = rootView.findViewById(R.id.recommendationRecycleView);
+        viewRecipe = rootView.findViewById(R.id.btnViewRecipe);
+        loadingView = rootView.findViewById(R.id.loadingHome);
+        error=rootView.findViewById(R.id.homeError);
+        background=rootView.findViewById(R.id.homeBackground);
+    }
+    @Override
+    public void showLoading() {
+        loadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingView.setVisibility(View.GONE);}
+
+    @Override
+    public void setSpecialMeal(String mealTitle, String imageMeal) {
+        Glide.with(this)
+                .load(imageMeal)
+                .into(mealImage);
+
+        mealName.setText(mealTitle);
+        nestedScrollView.setVisibility(View.VISIBLE);
+        hideLoading();
+
+    }
+    @Override
+    public void setDessert(List<Meal> desserts) {
+        adaptor.setDessertMeals(desserts);
+    }
+
+    @Override
+    public void showError() {
+        loadingView.setVisibility(View.INVISIBLE);
+        error.setVisibility(LinearLayout.VISIBLE);
+    }
+
+    @Override
+    public void hideBackground() {}
+
+    @Override
+    public void showBackground() {
+        background.setVisibility(ConstraintLayout.VISIBLE);
+    }
+
+    @Override
+    public void toDetial(DetialMealDTO detailMeal) {
+        Intent intent=new Intent(requireContext(), DetialActivity.class);
+        intent.putExtra("MEAL_OBJECT", detailMeal);
+        startActivity(intent);
+    }
+
+    @Override
+    public void toDessertDetial(String id) {
+        Intent intent=new Intent(requireContext(), DetialActivity.class);
+        intent.putExtra("MEAL_ID", id);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void goToDetails(String id) {
+        Log.d("dessertId","The id ->>" +id);
+        presenter.toDessertDetail(id);
 
 
     }

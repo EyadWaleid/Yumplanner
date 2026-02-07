@@ -20,7 +20,7 @@
             android:exported="false"
             android:hardwareAccelerated="true"/>
         <activity
-            android:name=".presentation.Home.view.MainHomeActivty"
+            android:name=".presentation.Home.view.HomeActivity"
             android:exported="false"
             android:hardwareAccelerated="true" />
         <activity

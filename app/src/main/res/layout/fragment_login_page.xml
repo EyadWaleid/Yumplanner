@@ -94,6 +94,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/emailInputError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:textColor="@color/red"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/latoregular"
+            android:text="@string/error"
+            android:visibility="gone"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLayout" />
+
+        <TextView
             android:id="@+id/EmailRegistrationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,6 +135,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/EmailRegistrationText">
 
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordInput"
                 style="@style/TextInputEditText"
@@ -129,23 +145,53 @@
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/passwordInputError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:textColor="@color/red"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/latoregular"
+            android:text="@string/error"
+            android:visibility="gone"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            style="@style/BtnStyle"
+            android:layout_marginHorizontal="24sp"
+
+            android:layout_marginTop="36dp"
+            android:text="@string/login"
+            app:backgroundTint="@color/dark_orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
-            android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:paddingStart="24dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
+            app:layout_constraintTop_toBottomOf="@+id/loginButton">
 
             <Button
                 android:id="@+id/forget_passowrd_btn"
                 style="@style/TextBtn"
-                android:text="@string/forget_password" />
+                android:text="@string/forget_password"
+
+                android:textAlignment="textStart" />
 
             <View
                 android:layout_width="0dp"
@@ -155,7 +201,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
                 android:fontFamily="@font/latoregular"
                 android:text="@string/new_chef"
                 android:textColor="@color/slogan_colour"
@@ -164,8 +209,11 @@
             <Button
                 android:id="@+id/signup_btn"
                 style="@style/TextBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="@string/sign_up" />
+                android:text="@string/sign_up"
+                android:textAlignment="textStart" />
 
         </LinearLayout>
 
@@ -216,7 +264,7 @@
             android:id="@+id/googleBtn"
             style="@style/BtnStyle"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:backgroundTint="@color/white"
             android:text="With google"
@@ -226,28 +274,32 @@
             app:iconGravity="textStart"
             app:iconTint="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/continueText"
             app:strokeColor="@color/dark_orange"
             app:strokeWidth="1dp" />
 
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginButton"
+            android:id="@+id/guestBtn"
             style="@style/BtnStyle"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
-            android:text="Login"
-            app:backgroundTint="@color/dark_orange"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/continue_as_guest"
+            android:textColor="@color/slogan_colour"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/googleBtn"
+            app:layout_constraintVertical_bias="0.283"
+            app:strokeColor="@color/slogan_colour"
+            app:strokeWidth="1dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <include
         android:id="@+id/loadingOverlay"
         layout="@layout/progress_bar"/>
