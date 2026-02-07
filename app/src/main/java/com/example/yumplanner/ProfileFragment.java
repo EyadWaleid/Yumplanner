@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yumplanner.presentation.Auth.view.AuthenticationActivity;
-import com.example.yumplanner.presentation.Home.view.MainHomeActivty;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 

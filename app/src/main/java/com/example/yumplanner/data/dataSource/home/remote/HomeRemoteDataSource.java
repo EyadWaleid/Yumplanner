@@ -1,9 +1,8 @@
 package com.example.yumplanner.data.dataSource.home.remote;
 
 
-import com.example.yumplanner.data.dto.DetialMealDTO;
+
 import com.example.yumplanner.data.model.DetailMeal;
-import com.example.yumplanner.data.model.Ingredient;
 import com.example.yumplanner.data.model.Meal;
 import com.example.yumplanner.data.network.init.AppNetwork;
 import com.example.yumplanner.data.network.services.HomeMealServices;

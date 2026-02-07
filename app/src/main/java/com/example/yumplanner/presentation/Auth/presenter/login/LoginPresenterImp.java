@@ -61,7 +61,6 @@ public class LoginPresenterImp  implements  LoginPresenter{
         });
 
     }
-
     @Override
     public void register() {
        loginView.navigateToRegister();

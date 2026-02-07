@@ -38,6 +38,9 @@ public class AuthRepo {
     public void checkUser(User user ){
         userDataSourceLocal.addUserIfNotExists(user);
     }
+    public  void  googleRegister(Activity activity,AuthCallback authCallback){
+        authenticatDataSource.RegisterWithGoogle(activity,authCallback);
+    }
     public void signOut(){
         authenticatDataSource.signOut();
     }

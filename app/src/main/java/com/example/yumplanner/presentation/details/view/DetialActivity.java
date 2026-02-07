@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class DetialActivity extends AppCompatActivity implements  DetialView {
     ConstraintLayout calender;
     MaterialButton planMeal;
     CalendarView calendarView;
+    LinearLayout linearLayout;
     View loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,7 @@ public class DetialActivity extends AppCompatActivity implements  DetialView {
             detialPresenter.getData(meal);
         }
         else if (getIntent().hasExtra("MEAL_ID")) {
-            String mealId = getIntent().getParcelableExtra("MEAL_ID");
+            String mealId = (String) getIntent().getSerializableExtra("MEAL_ID");
             detialPresenter.getDataById(mealId);
         }
         else {
@@ -100,6 +102,7 @@ public class DetialActivity extends AppCompatActivity implements  DetialView {
         youtubeWebView = findViewById(R.id.youtubeWebView);
         cookingSteps = findViewById(R.id.steps_view);
         mealImage=findViewById(R.id.headerImage);
+        linearLayout=findViewById(R.id.error);
         mealName=findViewById(R.id.txtTitle);
         planMeal=findViewById(R.id.calenderShower);
         calendarView=findViewById(R.id.calender);
@@ -165,6 +168,7 @@ public class DetialActivity extends AppCompatActivity implements  DetialView {
     @Override
     public void showError() {
         detialView.setVisibility(ConstraintLayout.INVISIBLE);
+        linearLayout.setVisibility(LinearLayout.VISIBLE);
     }
 
     @Override

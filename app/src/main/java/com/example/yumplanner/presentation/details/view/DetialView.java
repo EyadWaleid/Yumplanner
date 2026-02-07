@@ -14,6 +14,7 @@ public interface DetialView {
     void hideLoader();
     void hideView();
     void showView();
+
     void showError();
     void showCalender();
 

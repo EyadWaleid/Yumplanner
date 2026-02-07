@@ -1,6 +1,7 @@
 package com.example.yumplanner.data.dataSource.auth.local;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -19,6 +20,7 @@ public class UserDataSourceLocal {
     public void addUserIfNotExists(User user) {
      new Thread(() -> {
          try {
+             Log.d("localStorge","I'm here");
              // Check if user exists
              boolean existingUser = userDAO.checkUser(user.getId());
 
@@ -27,9 +29,14 @@ public class UserDataSourceLocal {
              } else {
                  // User doesn't exist - add them
                  userDAO.insertUser(user);
+                           Log.d("localStorge","I'm Done");
+
+
              }
          } catch (Exception e) {
-           e.printStackTrace();
+             Log.d("localStorge","I'm Error");
+
+             e.printStackTrace();
          }
 
      }).start();

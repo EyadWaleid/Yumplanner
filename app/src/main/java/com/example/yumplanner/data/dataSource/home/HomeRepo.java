@@ -24,23 +24,16 @@ public class HomeRepo {
       return   homeRemoteDataSource.getRandomMeal().map(meal -> {
 
                          return new DetialMealDTO(meal.getIdMeal(),meal.getStrMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
-              });
-/*
-*  DetialMealDTO(
-    String idMeal,
-    String strMeal,
-    String strCategory,
-    String strArea,
-    String strInstructions,
-    String strMealThumb,
-    List<Ingredient> ingredients
-)*/
+     });
     }
     public Observable<List<Meal>>getReocommendedDessert(){
-        return homeRemoteDataSource.getRecommendedDessert().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        return homeRemoteDataSource.getRecommendedDessert();
     }
-    public  Observable<DetailMeal>getDetialById(String id){
-        return  homeRemoteDataSource.getDessertDetial(id ).subscribeOn(Schedulers.io());
+    public  Observable<DetialMealDTO>getDetialById(String id){
+        return  homeRemoteDataSource.getDessertDetial(id).map(meal -> {
+            return new DetialMealDTO(meal.getIdMeal(),meal.getStrMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
+
+        });
     }
 
 

@@ -1,142 +1,5 @@
-/*
 package com.example.yumplanner.data.dataSource.auth.remote;
 
-import static android.content.ContentValues.TAG;
-import static android.provider.Settings.System.getString;
-
-import static com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL;
-
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import androidx.credentials.Credential;
-import androidx.credentials.CredentialManager;
-import androidx.credentials.GetCredentialRequest;
-import androidx.credentials.CustomCredential;
-
-
-import com.example.yumplanner.R;
-import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
-import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-public class AuthenticatDataSource {
-    private FirebaseAuth firebaseAuth;
-
-    public AuthenticatDataSource() {
-        firebaseAuth = FirebaseAuth.getInstance();
-    }
-
-    // Login with email and password
-    public void login(String email, String password, AuthCallback callback) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                        callback.onSuccess(user);
-                    } else {
-                        callback.onError(task.getException().getMessage());
-                    }
-                });
-    }
-
-    // Sign up with email and password
-    public void signUp(String email, String password, AuthCallback callback) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                        callback.onSuccess(user);
-                    } else {
-                        callback.onError(task.getException().getMessage());
-                    }
-                });
-    }
-   //login with google
-*/
-/*
-    public void loginWithGoogle( Activity activity,AuthCallback callback) {
-        OAuthProvider.Builder provider = OAuthProvider.newBuilder("google.com");
-        provider.addCustomParameter("prompt", "select_account");
-        firebaseAuth.startActivityForSignInWithProvider(activity, provider.build())
-                .addOnSuccessListener(authResult -> {
-                    FirebaseUser user = authResult.getUser();
-                    callback.onSuccess(user);
-                })
-                .addOnFailureListener(e -> {
-                    callback.onError(e.getMessage());
-                });
-    }
-*//*
-
-   public void loginWithGoogle(Activity activity, Context context, AuthCallback callback) {
-       // Build Google ID options
-       GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
-               .setFilterByAuthorizedAccounts(true)
-               .setServerClientId(activity.getString(R.string.default_web_client_id))
-               .build();
-
-       GetCredentialRequest request = new GetCredentialRequest.Builder()
-               .addCredentialOption(googleIdOption)
-               .build();
-
-       // Correct way to get CredentialManager
-       CredentialManager credentialManager = CredentialManager.create(activity);
-
-       credentialManager.getCredential(
-                       request
-               )
-               .addOnSuccessListener(credential -> handleSignIn(credential, callback))
-               .addOnFailureListener(e -> callback.onError(e.getMessage()));
-   }
-    private void handleSignIn(Credential credential, AuthCallback callback) {
-        if (credential instanceof CustomCredential) {
-            CustomCredential customCredential = (CustomCredential) credential;
-
-            if (customCredential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)) {
-                GoogleIdTokenCredential googleIdTokenCredential =
-                        GoogleIdTokenCredential.createFrom(customCredential.getData());
-
-                firebaseAuthWithGoogle(googleIdTokenCredential.getIdToken(), callback);
-                return;
-            }
-        }
-
-        callback.onError("Credential is not a Google ID token");
-    }
-
-
-    private void firebaseAuthWithGoogle(String idToken, AuthCallback callback) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        callback.onSuccess(firebaseAuth.getCurrentUser());
-                    } else {
-                        callback.onError(task.getException().getMessage());
-                    }
-                });
-    }
-
-    public  void loginWithGoogle(){
-
-    }
-
-    // Sign out
-    public void signOut() {
-        firebaseAuth.signOut();
-    }
-}*/
-package com.example.yumplanner.data.dataSource.auth.remote;
-
-import android.app.Activity;
 import android.content.Context;
 import android.os.CancellationSignal;
 import android.util.Log;
@@ -177,8 +40,6 @@ public class AuthenticatDataSource {
 
     // Login with email and password
     public void login(String email, String password, AuthCallback callback) {
-
-
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -229,7 +90,7 @@ public class AuthenticatDataSource {
     public void loginWithGoogle(Context context, AuthCallback callback) {
         //request to get the token to provide  to firebase
         GetGoogleIdOption googleIdOption = new GetGoogleIdOption.Builder()
-                .setFilterByAuthorizedAccounts(true)
+                .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(context.getString(R.string.default_web_client_id))
                 .build();
         //showing the google accounts only

@@ -8,10 +8,13 @@ import java.util.List;
 
 public interface HomeView {
     public void showError();
+    public  void hideBackground();
+    public  void showBackground();
     public void showLoading();
     public  void hideLoading();
     public  void setSpecialMeal(String mealTitle,String imageMeal);
     public  void setDessert(List<Meal> desserts);
     void toDetial(DetialMealDTO detailMeal);
+    void toDessertDetial(String id );
 
 }
