@@ -2,10 +2,9 @@ package com.example.yumplanner.presentation.Auth.presenter.login;
 
 import android.app.Activity;
 
-import com.example.yumplanner.data.dataSource.auth.local.UserDataCallback;
-import com.example.yumplanner.data.dataSource.auth.remote.AuthCallback;
-import com.example.yumplanner.data.dataSource.auth.repo.AuthRepo;
-import com.example.yumplanner.data.model.User;
+import com.example.yumplanner.data.auth.datasource.remote.AuthCallback;
+import com.example.yumplanner.data.auth.AuthRepo;
+import com.example.yumplanner.data.auth.model.User;
 import com.example.yumplanner.presentation.Auth.view.login.LoginView;
 import com.example.yumplanner.utiles.PrefsHelper;
 import com.google.firebase.auth.FirebaseUser;

@@ -4,12 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AreaCountryMapper {
-
     public static final Map<String, String> AREA_TO_COUNTRY_CODE;
-
     static {
         AREA_TO_COUNTRY_CODE = new HashMap<>();
-
         AREA_TO_COUNTRY_CODE.put("Algerian", "dz");
         AREA_TO_COUNTRY_CODE.put("American", "us");
         AREA_TO_COUNTRY_CODE.put("Argentinian", "ar");
@@ -48,7 +45,6 @@ public class AreaCountryMapper {
         AREA_TO_COUNTRY_CODE.put("Venezulan", "ve");
         AREA_TO_COUNTRY_CODE.put("Vietnamese", "vn");
     }
-
     private AreaCountryMapper() {
     }
 }

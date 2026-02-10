@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/detialmealBtn"
+android:layout_width="match_parent"
+android:layout_height="240dp"
+android:clickable="true"
+android:focusable="true"
+app:cardCornerRadius="18dp"
+app:cardElevation="4dp"
+android:layout_margin="20dp"
+app:strokeColor="@color/dark_goldenrod"
+app:strokeWidth="1dp"
+app:rippleColor="@color/dark_goldenrod">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/search_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/unnamed"
+        app:shapeAppearanceOverlay="@style/RoundedImage12"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_grad"/>
+    <TextView
+        android:id="@+id/search_detail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/garamond"
+        android:text="@string/bleskiver"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+</FrameLayout>
+
+</com.google.android.material.card.MaterialCardView>

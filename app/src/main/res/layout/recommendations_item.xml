@@ -13,7 +13,6 @@
     app:strokeColor="@color/dark_goldenrod"
     app:strokeWidth="1dp"
     app:rippleColor="@color/dark_goldenrod">
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

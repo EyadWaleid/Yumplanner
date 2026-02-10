@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/fav_nav"
@@ -29,24 +30,23 @@
 
         <TextView
             android:id="@+id/recipeName"
-            android:layout_width="0dp"
+            android:layout_width="263dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/latobold"
             android:text="@string/classic_beef_tacos"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/btnRemove"
-            app:layout_constraintEnd_toStartOf="@id/btnRemove"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipeImage"
-            app:layout_constraintVertical_bias="0.148" />
+            app:layout_constraintTop_toBottomOf="@+id/recipeImageFav" />
 
         <TextView
             android:id="@+id/availableoffline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/latobold"
             android:text="Available offline"
             android:textColor="@color/green"
@@ -54,9 +54,9 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnRemove"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipeImage"
+            app:layout_constraintTop_toBottomOf="@+id/recipeName"
             app:layout_constraintVertical_bias="0.753" />
 
         <com.google.android.material.button.MaterialButton
@@ -78,7 +78,7 @@
             app:iconTint="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipeImage"
+            app:layout_constraintTop_toBottomOf="@+id/recipeImageFav"
             app:layout_constraintVertical_bias="1.0"
             app:strokeColor="@color/semi_light_red"
             app:strokeWidth="1dp" />

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yumplanner.R;
-import com.example.yumplanner.data.model.Meal;
+import com.example.yumplanner.data.home.model.Meal;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;

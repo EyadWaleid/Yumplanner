@@ -173,13 +173,14 @@
     <LinearLayout
         android:id="@+id/homeError"
         android:visibility="gone"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/background"
         android:padding="20dp">
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             app:lottie_rawRes="@raw/noconnection"
             app:lottie_autoPlay="true"
@@ -190,6 +191,8 @@
 
 
     </LinearLayout>
+    <include android:id="@+id/disconnectPage"
+        layout="@layout/network_field"/>
     <include
         android:id="@+id/loadingHome"
         layout="@layout/progress_bar"/>

@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumplanner.R;
-import com.example.yumplanner.data.model.Ingredient;
-import com.example.yumplanner.data.model.Meal;
+import com.example.yumplanner.data.home.model.Ingredient;
 import com.example.yumplanner.utiles.imageHelper.ImageHelper;
 
 import java.util.ArrayList;

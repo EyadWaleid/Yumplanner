@@ -1,8 +1,7 @@
 package com.example.yumplanner.presentation.Home.view;
 
-import com.example.yumplanner.data.dto.DetialMealDTO;
-import com.example.yumplanner.data.model.DetailMeal;
-import com.example.yumplanner.data.model.Meal;
+import com.example.yumplanner.data.home.model.DetialMeal;
+import com.example.yumplanner.data.home.model.Meal;
 
 import java.util.List;
 
@@ -14,7 +13,9 @@ public interface HomeView {
     public  void hideLoading();
     public  void setSpecialMeal(String mealTitle,String imageMeal);
     public  void setDessert(List<Meal> desserts);
-    void toDetial(DetialMealDTO detailMeal);
+    void toDetial(DetialMeal detailMeal);
     void toDessertDetial(String id );
+    void showNetworkError();
+    void hidNetworkError();
 
 }

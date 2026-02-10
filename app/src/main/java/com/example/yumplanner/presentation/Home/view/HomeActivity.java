@@ -28,12 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-
-        if (savedInstanceState == null) {
-            initializeFragments();
-        } else {
-            restoreFragments();
-        }
+        initializeFragments();
         setupBottomNavigation(bottomNav);
     }
     private void initializeFragments() {
@@ -52,31 +47,9 @@ public class HomeActivity extends AppCompatActivity {
 
         activeFragment = homeFragment;
     }
-    private void restoreFragments() {
-        homeFragment = fragmentManager.findFragmentByTag("HOME");
-        searchFragment = fragmentManager.findFragmentByTag("SEARCH");
-        favoritesFragment = fragmentManager.findFragmentByTag("FAVORITES");
-        profileFragment = fragmentManager.findFragmentByTag("PROFILE");
-        calenderFragment =fragmentManager.findFragmentByTag("CALENDER");
-
-
-        if (homeFragment != null && homeFragment.isVisible()) {
-            activeFragment = homeFragment;
-        } else if (searchFragment != null && searchFragment.isVisible()) {
-            activeFragment = searchFragment;
-        } else if (favoritesFragment != null && favoritesFragment.isVisible()) {
-            activeFragment = favoritesFragment;
-        } else if (profileFragment != null && profileFragment.isVisible()) {
-            activeFragment = profileFragment;
-        }
-        else if(calenderFragment !=null&& calenderFragment.isVisible()){
-            activeFragment=calenderFragment;
-        }
-    }
     private void setupBottomNavigation(BottomNavigationView bottomNav) {
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-
             int itemId = item.getItemId();
             if (itemId == R.id.homeFragment2) {
                 selectedFragment = homeFragment;

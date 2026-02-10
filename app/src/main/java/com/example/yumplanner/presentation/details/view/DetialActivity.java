@@ -1,10 +1,6 @@
 package com.example.yumplanner.presentation.details.view;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
@@ -23,9 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yumplanner.R;
-import com.example.yumplanner.data.dto.DetialMealDTO;
-import com.example.yumplanner.data.model.DetailMeal;
-import com.example.yumplanner.data.model.Ingredient;
+import com.example.yumplanner.data.home.model.DetialMeal;
+import com.example.yumplanner.data.home.model.Ingredient;
 import com.example.yumplanner.presentation.details.presenter.DetialPresenter;
 import com.example.yumplanner.presentation.details.presenter.DetialPresenterImp;
 import com.example.yumplanner.utiles.imageHelper.ImageHelper;
@@ -81,7 +76,7 @@ public class DetialActivity extends AppCompatActivity implements  DetialView {
     }
     private void  checkDeliverdData(){
         if (getIntent().hasExtra("MEAL_OBJECT")) {
-            DetialMealDTO meal = getIntent().getParcelableExtra("MEAL_OBJECT");
+            DetialMeal meal = getIntent().getParcelableExtra("MEAL_OBJECT");
             detialPresenter.getData(meal);
         }
         else if (getIntent().hasExtra("MEAL_ID")) {

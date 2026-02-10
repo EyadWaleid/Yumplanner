@@ -1,7 +1,6 @@
 package com.example.yumplanner.presentation.details.view;
 
-import com.example.yumplanner.data.model.DetailMeal;
-import com.example.yumplanner.data.model.Ingredient;
+import com.example.yumplanner.data.home.model.Ingredient;
 
 import java.util.List;
 

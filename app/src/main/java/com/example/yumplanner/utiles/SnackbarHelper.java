@@ -15,19 +15,18 @@ public class SnackbarHelper {
         ERROR,
         WARNING
     }
-
     // Activity version
     public static void show(Activity activity, String message, Type type) {
         int color;
         switch (type) {
             case SUCCESS:
-                color = Color.parseColor("#4CAF50"); // green
+                color = Color.parseColor(Colours.green);
                 break;
             case ERROR:
-                color = Color.parseColor("#F44336"); // red
+                color = Color.parseColor(Colours.red);
                 break;
             case WARNING:
-                color = Color.parseColor("#FF9800"); // orange
+                color = Color.parseColor(Colours.orange);
                 break;
             default:
                 color = Color.DKGRAY;
@@ -38,12 +37,10 @@ public class SnackbarHelper {
                 message,
                 Snackbar.LENGTH_SHORT
         );
-
         snackbar.setBackgroundTint(color);
         TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
-
         snackbar.show();
     }
 
@@ -52,13 +49,13 @@ public class SnackbarHelper {
         int color;
         switch (type) {
             case SUCCESS:
-                color = Color.parseColor("#4CAF50");
+                color = Color.parseColor(Colours.green);
                 break;
             case ERROR:
-                color = Color.parseColor("#F44336");
+                color = Color.parseColor(Colours.red);
                 break;
             case WARNING:
-                color = Color.parseColor("#FF9800");
+                color = Color.parseColor(Colours.orange);
                 break;
             default:
                 color = Color.DKGRAY;

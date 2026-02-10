@@ -1,22 +1,25 @@
 package com.example.yumplanner.presentation.Home.presenter;
 
-import com.example.yumplanner.data.dataSource.home.HomeRepo;
-import com.example.yumplanner.data.dto.DetialMealDTO;
+import android.util.Pair;
+
+import com.example.yumplanner.data.MainRepo;
+import com.example.yumplanner.data.home.model.DetialMeal;
 import com.example.yumplanner.presentation.Home.view.HomeView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class HomePresenterImp implements HomePresenter {
+public class HomePresenterImp implements HomePresenter  {
 
-    private HomeRepo homeRepo;
+    private MainRepo mainRepo;
     private HomeView homeView;
     private final CompositeDisposable disposables;
-    DetialMealDTO detailMeal;
+    DetialMeal detailMeal;
     public HomePresenterImp(HomeView homeView) {
-        this.homeRepo = new HomeRepo();
+        this.mainRepo = new MainRepo();
         this.homeView = homeView;
         this.disposables = new CompositeDisposable();
     }
@@ -38,36 +41,46 @@ public class HomePresenterImp implements HomePresenter {
         homeView.toDessertDetial(id);
 
     }
-    private void fetchFromApi() {
-        Disposable disposable = homeRepo.getRandomProducts().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        detailMeal -> {
-                           this.detailMeal=detailMeal;
 
-                            homeView.setSpecialMeal(detailMeal.getMealName(),detailMeal.getImgeUrl());
+    private void fetchFromApi() {
+        Disposable disposable = Observable.zip(
+                        mainRepo.getRandomProducts().subscribeOn(Schedulers.io()),
+                        mainRepo.getReocommendedDessert().subscribeOn(Schedulers.io()),
+                        (detailMeal, meals) -> new Pair<>(detailMeal, meals)
+                )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        result -> {
+                            this.detailMeal = result.first;
+                            homeView.setSpecialMeal(result.first.getMealName(), result.first.getImgeUrl());
+                            homeView.setDessert(result.second);
+                            homeView.hideLoading();
+                            homeView.showBackground();
                         },
                         throwable -> {
                             homeView.hideLoading();
                             homeView.showError();
                         }
                 );
-        Disposable disposableRecommended=homeRepo.getReocommendedDessert().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                meals -> {
 
-                    homeView.setDessert(meals);
-                    homeView.hideLoading();
-                    homeView.showBackground();
-                },
-
-                throwable -> {
-                    homeView.hideLoading();
-                    homeView.showError();
-                }
-        );
         disposables.add(disposable);
-        disposables.add(disposableRecommended);
+
     }
     public void onDestroy() {
         disposables.clear();
+    }
+
+    @Override
+    public void onNetworkConnected() {
+        homeView.hidNetworkError();
+        homeView.showBackground();
+
+    }
+
+    @Override
+    public void onNetworkDisconnected() {
+        homeView.hideBackground();
+        homeView.showNetworkError();
+
     }
 }
