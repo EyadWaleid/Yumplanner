@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.yumplanner.R;
 import com.example.yumplanner.data.home.model.DetialMeal;
@@ -41,10 +42,11 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
     private MaterialButton viewRecipe;
     private ShapeableImageView mealImage;
     private TextView mealName;
+    private  TextView chefName;
     private NestedScrollView nestedScrollView;
     private View loadingView;
     private NetworkChangeListener networkChangeListener;
-    private LinearLayout disconnectedPage;
+    private LottieAnimationView disconnectedPage;
    private      RecommendationsAdaptor adaptor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,12 +59,13 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
         init( rootView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
          adaptor=new RecommendationsAdaptor(this);
-        presenter = new HomePresenterImp(this);
+        presenter = new HomePresenterImp(this,getActivity().getApplicationContext());
         networkChangeListener = new NetworkChangeListener();
         networkChangeListener.setNetworkStatusListener(presenter);
         presenter.getRandomData();
         recyclerView.setAdapter(adaptor);
         viewRecipe.setOnClickListener(v ->{
+
             presenter.reachDetails();
 
         });
@@ -75,14 +78,6 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         requireActivity().registerReceiver(networkChangeListener, filter);
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d("HomeFragment", "onPause - Unregistering network receiver");
-        requireActivity().unregisterReceiver(networkChangeListener);
-    }
-
     private void init(View rootView){
         nestedScrollView = rootView.findViewById(R.id.homeView);
         mealImage = rootView.findViewById(R.id.randomMealImage);
@@ -92,14 +87,13 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
         loadingView = rootView.findViewById(R.id.loadingHome);
         error=rootView.findViewById(R.id.homeError);
         background=rootView.findViewById(R.id.homeBackground);
-        disconnectedPage=rootView.findViewById(R.id.disconnectPage);
-
+        disconnectedPage=rootView.findViewById(R.id.noConnection);
+        chefName=rootView.findViewById(R.id.chef_name);
     }
     @Override
     public void showLoading() {
         loadingView.setVisibility(View.VISIBLE);
     }
-
     @Override
     public void hideLoading() {
         loadingView.setVisibility(View.GONE);}
@@ -110,7 +104,7 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
                 .into(mealImage);
 
         mealName.setText(mealTitle);
-        nestedScrollView.setVisibility(View.VISIBLE);
+        nestedScrollView.setVisibility(NestedScrollView.VISIBLE);
         hideLoading();
 
     }
@@ -134,6 +128,7 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
     @Override
     public void toDetial(DetialMeal detailMeal) {
         Intent intent=new Intent(requireContext(), DetialActivity.class);
+        requireActivity().overridePendingTransition(R.anim.zoomout,R.anim.static_animation);
         intent.putExtra("MEAL_OBJECT", detailMeal);
         startActivity(intent);
     }
@@ -143,21 +138,29 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
         intent.putExtra("MEAL_ID", id);
         startActivity(intent);
     }
-
     @Override
     public void showNetworkError() {
-        disconnectedPage.setVisibility(LinearLayout.VISIBLE);
+        disconnectedPage.setVisibility(LottieAnimationView.VISIBLE);
+    }
+    @Override
+    public void hidNetworkError() {
+        disconnectedPage.setVisibility(LottieAnimationView.INVISIBLE);
     }
 
     @Override
-    public void hidNetworkError() {
-        disconnectedPage.setVisibility(LinearLayout.INVISIBLE);
-
+    public void setChefName(String name) {
+        chefName.setText( getString(R.string.chef_name,name ));
     }
 
     @Override
     public void goToDetails(String id) {
         Log.d("dessertId","The id ->>" +id);
         presenter.toDessertDetail(id);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
     }
 }

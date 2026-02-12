@@ -36,10 +36,7 @@ public class SearchRemoteDataSource {
     public Observable<List<AreaDTO>> getArea(){
         return  searchService.getAreas().map( areaResponse -> areaResponse.getAreas());
     }
-/*    public  Observable<List<Meal>> getSearchDetail(Map<String,String> searchVaraiable){
-        return searchService.getSearched(searchVaraiable).map( mealResponse -> mealResponse.getMeal());
 
-    }*/
      public Observable<List<Meal>> getSearchDetail(Map<String, String> searchVariable) {
     Log.d("SearchRemote", "Searching with params: " + searchVariable);
 

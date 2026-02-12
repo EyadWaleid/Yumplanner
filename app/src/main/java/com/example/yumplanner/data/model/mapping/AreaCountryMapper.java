@@ -1,4 +1,4 @@
-package com.example.yumplanner.utiles;
+package com.example.yumplanner.data.model.mapping;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +46,7 @@ public class AreaCountryMapper {
         AREA_TO_COUNTRY_CODE.put("Vietnamese", "vn");
     }
     private AreaCountryMapper() {
+        // for not making object
     }
 }
 

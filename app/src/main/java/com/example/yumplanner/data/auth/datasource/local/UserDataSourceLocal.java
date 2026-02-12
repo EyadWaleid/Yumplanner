@@ -7,6 +7,8 @@ import com.example.yumplanner.data.db.AppDatabase;
 import com.example.yumplanner.data.auth.datasource.dao.UserDAO;
 import com.example.yumplanner.data.auth.model.User;
 
+import io.reactivex.rxjava3.core.Single;
+
 public class UserDataSourceLocal {
     private UserDAO userDAO;
     public  UserDataSourceLocal(Context context){
@@ -32,7 +34,11 @@ public class UserDataSourceLocal {
              e.printStackTrace();
          }
      }).start();
-    }}
+    }
+    public Single<String> getUserName(String id ){
+        return  userDAO.getUserName(id);
+    }
+}
 
 
 

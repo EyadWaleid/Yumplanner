@@ -2,7 +2,7 @@ package com.example.yumplanner.data.db;
 
 import androidx.room.TypeConverter;
 
-import com.example.yumplanner.data.home.model.Ingredient;
+import com.example.yumplanner.data.home.model.MealIngredient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,14 +14,14 @@ public class Convertor {
 
 
     @TypeConverter
-    public  static String fromIngredientList(List<Ingredient> ingredients) {
-        return gson.toJson(ingredients);
+    public  static String fromIngredientList(List<MealIngredient> mealIngredients) {
+        return gson.toJson(mealIngredients);
     }
 
     @TypeConverter
-    public  static  List<Ingredient> toIngredientList(String data) {
+    public  static  List<MealIngredient> toIngredientList(String data) {
         if (data == null) return null;
-        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        Type listType = new TypeToken<List<MealIngredient>>() {}.getType();
         return gson.fromJson(data, listType);}
 
     @TypeConverter

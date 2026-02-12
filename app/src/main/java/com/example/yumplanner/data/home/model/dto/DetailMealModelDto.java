@@ -2,7 +2,7 @@ package com.example.yumplanner.data.home.model.dto;
 
 import android.os.Parcel;
 
-import com.example.yumplanner.data.home.model.Ingredient;
+import com.example.yumplanner.data.home.model.MealIngredient;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -129,8 +129,8 @@ public class DetailMealModelDto {
     }
 
 
-    public List<Ingredient> getIngredientList() {
-        List<Ingredient> list = new java.util.ArrayList<>();
+    public List<MealIngredient> getIngredientList() {
+        List<MealIngredient> list = new java.util.ArrayList<>();
 
         String[] ingredients = {
                 strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
@@ -148,7 +148,7 @@ public class DetailMealModelDto {
 
         for (int i = 0; i < 20; i++) {
             if (!ingredients[i].isEmpty()&&!measures[1].isEmpty()) {
-                list.add(new Ingredient(ingredients[i], measures[i].trim() ));
+                list.add(new MealIngredient(ingredients[i], measures[i].trim() ));
             }
             else{
                 break;

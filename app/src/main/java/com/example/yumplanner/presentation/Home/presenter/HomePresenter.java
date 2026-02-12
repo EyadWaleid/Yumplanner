@@ -8,7 +8,5 @@ public interface HomePresenter extends NetworkStatusListener {
     void getRandomData();
     void reachDetails();
     void toDessertDetail(String id );
-
-
-
+    void onDestroy();
 }

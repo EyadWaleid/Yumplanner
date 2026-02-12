@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.firbaseservice)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias (libs.plugins.room)
 
 }
 
@@ -39,6 +40,10 @@ android {
         compose = true
     }
 }
+room {
+    schemaDirectory(layout.projectDirectory.dir("schemas"))
+}
+
 
 dependencies {
     implementation(libs.retrofit)
@@ -71,6 +76,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     implementation(libs.core)

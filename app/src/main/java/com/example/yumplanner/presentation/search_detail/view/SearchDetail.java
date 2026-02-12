@@ -44,7 +44,7 @@ public class SearchDetail extends AppCompatActivity implements SearchDetialView 
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-          searchDetailPresenter=new SearchDetailPresenterImp(this);
+          searchDetailPresenter=new SearchDetailPresenterImp(this,this.getApplicationContext());
           searchDetailsData=findViewById(R.id.searchDetailrecyleVeiw);
           searchInput=findViewById(R.id.searchInput);
           searchDetailAdaptor =new SearchDetailAdaptor(this);

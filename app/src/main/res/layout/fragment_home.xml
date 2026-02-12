@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:id="@+id/nav_home"
     tools:context=".presentation.Home.view.HomeFragment">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noConnection"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/noconnection" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/homeView"
@@ -15,11 +24,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/homeBackground"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/background"
-            android:padding="20dp">
+            android:padding="20dp"
+            >
 
             <TextView
                 android:id="@+id/textWelcome"
@@ -37,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/latobold"
-                android:text="@string/chef_eyad"
+                android:text="@string/chef_name"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textWelcome" />
@@ -112,11 +121,12 @@
 
                     <TextView
                         android:id="@+id/mealNmae"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:layout_gravity="center"
                         android:fontFamily="@font/garamond"
-                        android:text="Classic Ratatouille"
+                        android:text="@string/classic_ratatouille"
                         android:textSize="22sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -125,20 +135,20 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:letterSpacing="0.1"
                         android:paddingHorizontal="24dp"
                         android:paddingVertical="10dp"
                         android:text="@string/view_recipe"
-                        android:clickable="true"
-                        app:rippleColor="@color/dark_orange"
-                        android:focusable="true"
                         android:textAllCaps="true"
                         android:textColor="@color/gold"
                         android:textSize="14sp"
                         app:backgroundTint="@android:color/transparent"
                         app:cornerRadius="2dp"
+                        app:rippleColor="@color/dark_orange"
                         app:strokeColor="#C9A45C"
                         app:strokeWidth="1dp" />
                 </LinearLayout>
@@ -149,8 +159,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/latoregular"
-                android:text="Some Recommendations"
+                android:fontFamily="@font/latobold"
+                android:text="@string/some_recommended_desserts"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/special_recipe" />
@@ -170,29 +180,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-    <LinearLayout
-        android:id="@+id/homeError"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:padding="20dp">
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            app:lottie_rawRes="@raw/noconnection"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
 
-
-
-
-
-    </LinearLayout>
-    <include android:id="@+id/disconnectPage"
-        layout="@layout/network_field"/>
     <include
         android:id="@+id/loadingHome"
         layout="@layout/progress_bar"/>
