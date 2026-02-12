@@ -2,9 +2,9 @@ package com.example.yumplanner.data.home.model;
 
 
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 
@@ -19,18 +19,34 @@ public class DetialMeal implements Parcelable {
     private  String imgeUrl;
     private  boolean isFav;
 
-    private List<Ingredient> ingredients;
+    private List<MealIngredient> mealIngredients;
+
+    public DetialMeal(String mealName, String mealId, String category, String area, List<String> instructions, String imgeUrl, List<MealIngredient> mealIngredients) {
+        this.mealName = mealName;
+        this.mealId = mealId;
+        this.category = category;
+        this.area = area;
+        this.instructions = instructions;
+        this.imgeUrl = imgeUrl;
+        this.mealIngredients = mealIngredients;
+    }
 
 
 
-    public DetialMeal(String idMeal, String strMeal, String strCategory, String strArea, List<String>strInstructions, String strMealThumb, List<Ingredient> ingredients) {
-        this.mealId=idMeal;
-        this.mealName=strMeal;
-        this.category=strCategory;
-        this.area=strArea;
-        this.instructions =strInstructions;
-        this.imgeUrl=strMealThumb;
-        this.ingredients = ingredients;
+    public List<MealIngredient> getMealIngredients() {
+        return mealIngredients;
+    }
+
+    public void setMealIngredients(List<MealIngredient> mealIngredients) {
+        this.mealIngredients = mealIngredients;
+    }
+
+    public boolean isFav() {
+        return isFav;
+    }
+
+    public void setFav(boolean fav) {
+        isFav = fav;
     }
 
     protected DetialMeal(Parcel in) {
@@ -40,7 +56,10 @@ public class DetialMeal implements Parcelable {
         area = in.readString();
         instructions = in.createStringArrayList();
         imgeUrl = in.readString();
-        ingredients = in.createTypedArrayList(Ingredient.CREATOR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            isFav=in.readBoolean();
+        }
+        mealIngredients = in.createTypedArrayList(MealIngredient.CREATOR);
     }
 
     public static final Creator<DetialMeal> CREATOR = new Creator<DetialMeal>() {
@@ -103,12 +122,12 @@ public class DetialMeal implements Parcelable {
         this.imgeUrl = imgeUrl;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<MealIngredient> getIngredients() {
+        return mealIngredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredients(List<MealIngredient> mealIngredients) {
+        this.mealIngredients = mealIngredients;
     }
 
     @Override
@@ -124,7 +143,10 @@ public class DetialMeal implements Parcelable {
         dest.writeString(area);
         dest.writeStringList(instructions);
         dest.writeString(imgeUrl);
-        dest.writeTypedList(ingredients);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            dest.writeBoolean(isFav);
+        }
+        dest.writeTypedList(mealIngredients);
     }
 
 

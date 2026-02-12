@@ -1,5 +1,6 @@
 package com.example.yumplanner.presentation.search_detail.presenter;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.yumplanner.data.MainRepo;
@@ -22,9 +23,9 @@ public class SearchDetailPresenterImp implements SearchDetailPresenter {
     List<Meal> mealList;
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    public SearchDetailPresenterImp(SearchDetialView searchDetail){
+    public SearchDetailPresenterImp(SearchDetialView searchDetail, Context context){
         this.searchDetailview = searchDetail;
-        repo = new MainRepo();
+        repo = new MainRepo(context);
     }
 
     @Override

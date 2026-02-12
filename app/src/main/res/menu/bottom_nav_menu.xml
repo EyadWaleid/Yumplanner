@@ -18,7 +18,7 @@
     <item
         android:id="@+id/favFragment"
         android:enabled="true"
-    android:icon="@drawable/outline_favorite_24"
+    android:icon="@drawable/unfill_fav"
     android:iconTint="@color/dark_orange"
     android:title="Fav" ></item>
 

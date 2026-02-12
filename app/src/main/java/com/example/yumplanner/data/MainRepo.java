@@ -1,6 +1,10 @@
 package com.example.yumplanner.data;
 
+import android.content.Context;
+
+import com.example.yumplanner.data.auth.datasource.local.UserDataSourceLocal;
 import com.example.yumplanner.data.home.datasource.remote.HomeRemoteDataSource;
+import com.example.yumplanner.data.home.model.MealIngredient;
 import com.example.yumplanner.data.search.remote.SearchRemoteDataSource;
 import com.example.yumplanner.data.home.model.DetialMeal;
 import com.example.yumplanner.data.home.model.dto.AreaDTO;
@@ -12,19 +16,21 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 
 public class MainRepo {
     HomeRemoteDataSource homeRemoteDataSource;
     SearchRemoteDataSource searchRemoteDataSource;
-    public MainRepo(){
-
+    UserDataSourceLocal userDataSourceLocal;
+    public MainRepo(Context context){
+        userDataSourceLocal=new UserDataSourceLocal(context);
         homeRemoteDataSource=new HomeRemoteDataSource();
         searchRemoteDataSource=new SearchRemoteDataSource();
     }
     public Observable<DetialMeal> getRandomProducts(){
       return   homeRemoteDataSource.getRandomMeal().map(meal -> {
 
-                         return new DetialMeal(meal.getIdMeal(),meal.getStrMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
+                         return new DetialMeal(meal.getStrMeal(),meal.getIdMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
      });
     }
     public Observable<List<Meal>>getReocommendedDessert(){
@@ -32,7 +38,7 @@ public class MainRepo {
     }
     public  Observable<DetialMeal>getDetialById(String id){
         return  homeRemoteDataSource.getDessertDetial(id).map(meal -> {
-            return new DetialMeal(meal.getIdMeal(),meal.getStrMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
+            return new DetialMeal(meal.getStrMeal(),meal.getIdMeal(),meal.getStrCategory(),meal.getStrArea(),meal.getSteps(),meal.getStrMealThumb(),meal.getIngredientList());
 
         });
     }
@@ -59,6 +65,9 @@ public class MainRepo {
     }
     public Observable<List<Meal>>getSearchMeal(String query){
         return  searchRemoteDataSource.getMealSearched(query);
+    }
+    public Single<String>getuserName(String id){
+        return  userDataSourceLocal.getUserName(id);
     }
 
 }

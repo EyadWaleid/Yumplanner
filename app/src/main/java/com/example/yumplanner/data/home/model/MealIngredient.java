@@ -4,13 +4,13 @@ package com.example.yumplanner.data.home.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Ingredient implements Parcelable {
+public class MealIngredient implements Parcelable {
     private String name;
     private String measure;
 
     private String imageUrl;
 
-    public Ingredient(String name, String measure) {
+    public MealIngredient(String name, String measure) {
         this.name = name;
         this.measure = measure;
         if (name != null && !name.isEmpty()) {
@@ -20,7 +20,19 @@ public class Ingredient implements Parcelable {
         }
     }
 
-    protected Ingredient(Parcel in) {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    protected MealIngredient(Parcel in) {
         name = in.readString();
         measure = in.readString();
         imageUrl = in.readString();
@@ -38,15 +50,15 @@ public class Ingredient implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
+    public static final Creator<MealIngredient> CREATOR = new Creator<MealIngredient>() {
         @Override
-        public Ingredient createFromParcel(Parcel in) {
-            return new Ingredient(in);
+        public MealIngredient createFromParcel(Parcel in) {
+            return new MealIngredient(in);
         }
 
         @Override
-        public Ingredient[] newArray(int size) {
-            return new Ingredient[size];
+        public MealIngredient[] newArray(int size) {
+            return new MealIngredient[size];
         }
     };
 

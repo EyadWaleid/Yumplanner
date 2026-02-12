@@ -49,42 +49,46 @@ public class SearchFragment extends Fragment implements SearchView,OnShowResult 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        searchPresenter = new SearchPresenterImp(this);
+         init(view);
+
+        filterChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
+
+            if (checkedIds.isEmpty()) return;
+            int checkedId = checkedIds.get(0);
+            loader.setVisibility(LottieAnimationView.VISIBLE);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            recyclerView.setAdapter(adapter);
+            searchEditText.setText("");
+            if (checkedId == R.id.chipCountry) {
+                searchPresenter.onDestroy();
+                searchPresenter.getAreaList();
+                searchPresenter.searchData(createSearchObservable());
+            } else if (checkedId == R.id.chipIngredient) {
+                searchPresenter.onDestroy();
+
+                searchPresenter.getIngredientList();
+                searchPresenter.searchData(createSearchObservable());
+
+            } else if (checkedId == R.id.chipCategory) {
+                searchPresenter.onDestroy();
+
+                clearData();
+                searchPresenter.getCategoryList();
+                searchPresenter.searchData(createSearchObservable());
+            }
+
+        });
+
+    }
+    void init(View view){
         filterChipGroup = view.findViewById(R.id.filterChipGroup);
         searchEditText = view.findViewById(R.id.searchEditText);
         recyclerView = view.findViewById(R.id.searchItems);
         adapter = new SearchAdaptor(this);
         loader= view.findViewById(R.id.searchLoader);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.setAdapter(adapter);
-
-        filterChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
-            if (checkedIds.isEmpty()) return;
-            int checkedId = checkedIds.get(0);
-            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
-            searchEditText.setText("");
-            if (checkedId == R.id.chipCountry) {
-
-                searchPresenter.getAreaList();
-                searchPresenter.searchData(createSearchObservable());
-            } else if (checkedId == R.id.chipIngredient) {
-
-                searchPresenter.getIngredientList();
-                searchPresenter.searchData(createSearchObservable());
-            } else if (checkedId == R.id.chipCategory) {
-                searchPresenter.getCategoryList();
-                searchPresenter.searchData(createSearchObservable());
-            }
-            else if(checkedId==R.id.chipMeals){
-                adapter.removeData();
-                searchPresenter.searchByMealName(createSearchObservable());
-                recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-            }
-        });
+        searchPresenter = new SearchPresenterImp(this,this.getActivity().getApplicationContext());
 
     }
-
     @Override
     public void setCategoryData(List<SearchableItems> items,String type) {
 
@@ -140,14 +144,13 @@ public class SearchFragment extends Fragment implements SearchView,OnShowResult 
 
     @Override
     public void clearData() {
-        adapter.removeData();
+        adapter.clearSearchableItemsData();
     }
 
     @Override
     public void setTextWatcher(TextWatcher textWatcher) {
         searchEditText.addTextChangedListener(textWatcher);
     }
-
     @Override
     public void toResultDetials(String name, String type) {
         searchEditText.setText("");
@@ -163,7 +166,6 @@ public class SearchFragment extends Fragment implements SearchView,OnShowResult 
         super.onDestroy();
         searchPresenter.onDestroy();
     }
-
     private Observable<String> createSearchObservable() {
         return Observable.create(emitter -> {
             searchEditText.addTextChangedListener(new TextWatcher() {
@@ -185,8 +187,6 @@ public class SearchFragment extends Fragment implements SearchView,OnShowResult 
             });
         });
     }
-
-
 
     @Override
     public void showSearchResult(String name, String type) {

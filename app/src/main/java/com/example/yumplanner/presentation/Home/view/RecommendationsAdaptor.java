@@ -20,11 +20,12 @@ import java.util.List;
 public class RecommendationsAdaptor extends RecyclerView.Adapter<RecommendationsAdaptor.RecommendationHolder> {
     DessertOnClickListener dessertOnClickListener;
 
+    private  List<Meal>dessertMeals;
     public RecommendationsAdaptor(DessertOnClickListener dessertOnClickListener) {
         this.dessertOnClickListener = dessertOnClickListener;
+        this.dessertMeals=new ArrayList<>();
     }
 
-    List<Meal>dessertMeals=new ArrayList<>();
     @NonNull
     @Override
     public RecommendationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -11,6 +11,9 @@ public interface SearchPresenter {
     void getIngredientList();
     void getAreaList();
     void searchData(Observable<String> searchQuery);
-    public void toSearchResult(String name,String type) ;
-    public  void searchByMealName(Observable<String> searchQuery);
-    public  void onDestroy();}
+    void toSearchResult(String name,String type) ;
+/*
+     void searchByMealName(Observable<String> searchQuery);
+*/
+     void onDestroy();
+    void getMeals();}

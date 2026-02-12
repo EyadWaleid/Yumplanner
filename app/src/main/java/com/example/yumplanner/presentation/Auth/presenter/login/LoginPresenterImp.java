@@ -6,7 +6,6 @@ import com.example.yumplanner.data.auth.datasource.remote.AuthCallback;
 import com.example.yumplanner.data.auth.AuthRepo;
 import com.example.yumplanner.data.auth.model.User;
 import com.example.yumplanner.presentation.Auth.view.login.LoginView;
-import com.example.yumplanner.utiles.PrefsHelper;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPresenterImp  implements  LoginPresenter{
@@ -29,7 +28,7 @@ public class LoginPresenterImp  implements  LoginPresenter{
                     loginView.hideLoading();
                     loginView.showSnackBarSuccess("Login succeed");
                     loginView.navigateToHome();
-                    PrefsHelper.getInstance(activity).setLoggedIn(true);
+
                   authRepo.checkUser(new User(user.getUid(), user.getDisplayName(), user.getEmail()));
                 }
 
@@ -49,7 +48,7 @@ public class LoginPresenterImp  implements  LoginPresenter{
 
                 loginView.showSnackBarSuccess("Login succeed");
                 loginView.navigateToHome();
-                PrefsHelper.getInstance(activity).setLoggedIn(true);
+
             }
 
             @Override

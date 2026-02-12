@@ -39,13 +39,13 @@
                 app:tint="@color/dark_orange" />
 
             <ImageButton
-                android:id="@+id/btnShare"
+                android:id="@+id/favBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="16dp"
 
                 android:background="@drawable/white_circular"
-                android:src="@drawable/outline_favorite_24"
+                android:src="@drawable/unfill_fav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/dark_orange" />
@@ -84,7 +84,7 @@
                 android:layout_marginTop="36dp"
                 android:fontFamily="@font/latobold"
                 android:gravity="start"
-                android:text="@string/ingredients"
+                android:text="@string/mealIngredients"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

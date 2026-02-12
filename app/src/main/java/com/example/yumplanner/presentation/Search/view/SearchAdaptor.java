@@ -15,17 +15,12 @@ import com.example.yumplanner.presentation.Search.model.SearchableItems;
 import com.example.yumplanner.utiles.imageHelper.ImageHelper;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class SearchAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<SearchableItems> displayList = new ArrayList<>();
     private  List<Meal> displayMeals= new ArrayList<>();
-    /*com.example.yumplanner.data.home.mode*/
-    /*com.example.yumplanner.data.home.mode*/
-
   OnShowResult onShowResult;
     public  SearchAdaptor(OnShowResult onShowResult){
         this.onShowResult=onShowResult;
@@ -37,23 +32,26 @@ public class SearchAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private  final  int TYPE_MEAL=4;
     @Override
     public int getItemViewType(int position) {
-
         if ("a".equals(type)) return TYPE_COUNTRY;
         if ("i".equals(type)) return TYPE_INGREDIENT;
         if ("c".equals(type)) return TYPE_CATEGORY;
         if ("s".equals(type)) return TYPE_MEAL;
         return -1;
     }
+    public void setData(List<SearchableItems> newData,String type) {
+        displayMeals.clear();
+        displayList.clear();
+        displayList.addAll(newData);
+        this.type=type;
+        notifyDataSetChanged();
+    }
     public  void setDisplayMeals(List<Meal> meals,String type){
-
         displayMeals.clear();
         displayList.clear();
         displayMeals.addAll(meals);
         this.type=type;
         notifyDataSetChanged();
-
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -100,21 +98,17 @@ public class SearchAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
        else  if (type.equals("s"))  return  displayMeals.size();
        else  return 0;
     }
-    public void filter(List<SearchableItems> filteredList) {
+
+    public  void clearSearchableItemsData(){
         displayList.clear();
-        displayList.addAll(filteredList);
+        displayMeals.clear();
+        type = "";
         notifyDataSetChanged();
     }
-    public void setData(List<SearchableItems> newData,String type) {
-        displayMeals.clear();
+    public  void filter(List<SearchableItems> searchableItems){
         displayList.clear();
-        displayList.addAll(newData);
-        this.type=type;
-        notifyDataSetChanged();
-    }
-    public  void removeData(){
-        displayMeals.clear();
-        displayList.clear();
+
+        displayList.addAll(searchableItems);
         notifyDataSetChanged();
     }
 
