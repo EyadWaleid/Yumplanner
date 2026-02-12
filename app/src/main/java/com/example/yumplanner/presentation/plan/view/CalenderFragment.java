@@ -42,6 +42,7 @@ public class CalenderFragment extends Fragment  implements CalenderView{
     TextView noData;
     PlanPresenter planPresenter;
     String date;
+    Calendar today;
     NetworkChangeListener networkChangeListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,7 +59,7 @@ public class CalenderFragment extends Fragment  implements CalenderView{
         planPresenter.getMeal(date);
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             String selectedDate = year + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
-            planPresenter.getMeal(selectedDate);
+            planPresenter.getMeal(selectedDate);planPresenter.getMeal(selectedDate);
         });
         deleteBtn.setOnClickListener(v -> {
             planPresenter.deleteBtn();
@@ -91,7 +92,6 @@ public class CalenderFragment extends Fragment  implements CalenderView{
     }
 
     void initView(View view){
-
         calendarView=view.findViewById(R.id.calender_view);
         cardView=view.findViewById(R.id.plan_meal_image);
         deleteBtn=view.findViewById(R.id.deleteBtn);
@@ -99,16 +99,15 @@ public class CalenderFragment extends Fragment  implements CalenderView{
         mealName=view.findViewById(R.id.recipePlannedName);
         noData=view.findViewById(R.id.noData);
         planPresenter=new PlanPresenterImp(this,this.requireActivity().getApplicationContext());
+         today = Calendar.getInstance();
+        calendarView.setMinDate(today.getTimeInMillis());
 
-        Calendar today = Calendar.getInstance();
-
-         date = today.get(Calendar.YEAR) + "-" +
+        date = today.get(Calendar.YEAR) + "-" +
                 String.format("%02d", today.get(Calendar.MONTH) + 1) + "-" +//the + 1 cause the Calendar is zero based
                 String.format("%02d", today.get(Calendar.DAY_OF_MONTH));
     }
     @Override
     public void setImage(String imageUrl) {
-
         Glide.with(requireContext())
                 .load(new File(imageUrl))
                 .placeholder(R.drawable.unnamed)
@@ -116,6 +115,18 @@ public class CalenderFragment extends Fragment  implements CalenderView{
                 .into(mealImage);
 
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        calendarView.setMinDate(today.getTimeInMillis());
+         date=today.get(Calendar.YEAR) + "-" +
+                 String.format("%02d", today.get(Calendar.MONTH) + 1) + "-" +
+                 String.format("%02d", today.get(Calendar.DAY_OF_MONTH));
+        planPresenter.getMeal(date);
+
+    }
+
     @Override
     public void setText(String mealName) {
         this.mealName.setText(mealName);

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.yumplanner.presentation.plan.view.CalenderFragment;
-import com.example.yumplanner.FavFragment;
+import com.example.yumplanner.presentation.fav.view.FavFragment;
 import com.example.yumplanner.ProfileFragment;
 import com.example.yumplanner.R;
 import com.example.yumplanner.presentation.Search.view.SearchFragment;

@@ -38,12 +38,13 @@ public class DetialPresenterImp implements DetialPresenter {
     DetialView view;
     String uid;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-
+Context context;
     public DetialPresenterImp(DetialView detialView, Context context) {
         mainRepo = new MainRepo(context);
         view = detialView;
         detailRepo = new DetailRepo(context);
         uid = FirebaseAuth.getInstance().getUid();
+        this.context=context;
     }
 
     @Override
@@ -131,7 +132,7 @@ public class DetialPresenterImp implements DetialPresenter {
     }
 
     @Override
-    public void OnSaveVMeal(Context context) {
+    public void OnSaveVMeal() {
         if (dateSelected.isEmpty()) {
             dateSelected = view.setDate();
         }
@@ -207,22 +208,50 @@ public class DetialPresenterImp implements DetialPresenter {
                                 );
 
                             } else {
-                                FavMealEntity favMeal = new FavMealEntity(
+
+                                     Glide.with(context)
+                                        .asBitmap()
+                                        .load(detialMeal.getImgeUrl())
+                                        .into(new CustomTarget<Bitmap>() {
+                                            @Override
+                                            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                                String imagePath = saveBitmapToInternal(resource, context);
+
+                                                String finalImagePath = (imagePath != null && !imagePath.isEmpty())
+                                                        ? imagePath
+                                                        : detialMeal.getImgeUrl();
+
+                                             FavMealEntity favMeal = new FavMealEntity(
                                         detialMeal.getMealId(),
                                         detialMeal.getMealName(),
                                         detialMeal.getCategory(),
                                         detialMeal.getArea(),
                                         detialMeal.getInstructions(),
-                                        detialMeal.getImgeUrl(),
+                                        imagePath,
                                         detialMeal.getIngredients(),
                                         uid
                                 );
-                                detailRepo.addFavMeal(favMeal).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+
+
+                  detailRepo.addFavMeal(favMeal).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
                                         () -> {
                                             view.fillIcon();
 
                                         }
                                 );
+                                            }
+                                            @Override
+                                            public void onLoadCleared(@Nullable Drawable placeholder) {
+                                            }
+
+                                            @Override
+                                            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                                            }
+                                        });
+
+
+
+
 
 
 

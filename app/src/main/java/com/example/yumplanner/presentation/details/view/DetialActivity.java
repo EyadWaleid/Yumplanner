@@ -79,7 +79,7 @@ public class DetialActivity extends AppCompatActivity implements DetialView {
                 }
         );
         saveMeal.setOnClickListener(v -> {
-            detialPresenter.OnSaveVMeal(getApplicationContext());
+            detialPresenter.OnSaveVMeal();
 
         });
         cancelBtn.setOnClickListener(v -> {
@@ -102,7 +102,6 @@ public class DetialActivity extends AppCompatActivity implements DetialView {
             String mealId = (String) getIntent().getSerializableExtra("MEAL_ID");
             detialPresenter.getDataById(mealId);
         } else {
-            Toast.makeText(this, "Error: No data", Toast.LENGTH_SHORT).show();
             finish();
         }
     }

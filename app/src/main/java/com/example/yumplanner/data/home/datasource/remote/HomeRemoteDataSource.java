@@ -33,11 +33,9 @@ public class HomeRemoteDataSource {
         }
             return dessertResponse.getMeal(); });
     }
-
     public Observable<DetailMealModelDto> getDessertDetial(String id ){
         return  homeMealServices.getDetailById(id).map(detailMealResponse -> detailMealResponse.getMeals().get(0)) ;
     }
-
 
     }
 

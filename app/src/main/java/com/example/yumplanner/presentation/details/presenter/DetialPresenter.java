@@ -9,7 +9,7 @@ public interface DetialPresenter {
     void getDataById(String id);
     void addCalender();
     void onDateSelected(String date);
-    void OnSaveVMeal(Context context);
+    void OnSaveVMeal();
     void favMeal();
     void cancelCalender();
 

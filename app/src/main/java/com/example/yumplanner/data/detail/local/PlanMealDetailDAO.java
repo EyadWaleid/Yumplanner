@@ -22,5 +22,4 @@ public interface PlanMealDetailDAO {
     Maybe<PlannedMealEntity>getPlannedData(String date,String id);
     @Query("DELETE FROM PlannedMealEntity WHERE date = :date and userId = :userId")
     Completable deleteMeal(String date ,String userId);
-
 }

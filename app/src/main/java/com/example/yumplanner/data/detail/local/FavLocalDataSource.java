@@ -1,6 +1,7 @@
 package com.example.yumplanner.data.detail.local;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.yumplanner.data.db.AppDatabase;
 import com.example.yumplanner.data.model.Entity.FavMealEntity;

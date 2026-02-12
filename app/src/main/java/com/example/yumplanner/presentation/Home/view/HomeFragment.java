@@ -65,11 +65,8 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
         presenter.getRandomData();
         recyclerView.setAdapter(adaptor);
         viewRecipe.setOnClickListener(v ->{
-
             presenter.reachDetails();
-
         });
-
 
     }
     @Override
@@ -128,9 +125,10 @@ public class HomeFragment extends Fragment implements HomeView,DessertOnClickLis
     @Override
     public void toDetial(DetialMeal detailMeal) {
         Intent intent=new Intent(requireContext(), DetialActivity.class);
-        requireActivity().overridePendingTransition(R.anim.zoomout,R.anim.static_animation);
         intent.putExtra("MEAL_OBJECT", detailMeal);
         startActivity(intent);
+        requireActivity().overridePendingTransition(R.anim.zoomout,R.anim.static_animation);
+
     }
     @Override
     public void toDessertDetial(String id) {

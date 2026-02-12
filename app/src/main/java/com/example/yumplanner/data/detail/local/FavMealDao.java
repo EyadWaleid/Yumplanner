@@ -25,4 +25,5 @@ public interface FavMealDao {
  @Query("DELETE FROM FavMealEntity WHERE mealId = :id and userId = :userId")
  //Competable for delete
  Completable deleteById(String id,String userId);
+
 }

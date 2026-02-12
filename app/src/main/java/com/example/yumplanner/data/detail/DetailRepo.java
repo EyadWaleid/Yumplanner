@@ -1,16 +1,23 @@
 package com.example.yumplanner.data.detail;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.yumplanner.data.detail.local.FavLocalDataSource;
 import com.example.yumplanner.data.detail.local.PlanMealDetailLocalDataSource;
+import com.example.yumplanner.data.home.model.DetialMeal;
 import com.example.yumplanner.data.model.Entity.FavMealEntity;
 import com.example.yumplanner.data.model.Entity.PlannedMealEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DetailRepo {
     PlanMealDetailLocalDataSource planMealDetailLocalDataSource;
@@ -43,5 +50,24 @@ public class DetailRepo {
     }
     public  Completable deletePlanMeal(String date,String userId){
       return  planMealDetailLocalDataSource.deleteData(date,userId);
+    }
+    public Observable<List<DetialMeal>> loadAllFav(String userId){
+        return favLocalDataSource.getAllFavMeal(userId)
+                .map(entities -> {
+                    List<DetialMeal> result = new ArrayList<>();
+                    for (FavMealEntity entity : entities) {
+                        result.add(new DetialMeal(
+                                entity.getMealName(),
+                                entity.getMealId(),
+                                entity.getCategory(),
+                                entity.getArea(),
+                                entity.getInstructions(),
+                                entity.getImageUrl(),
+                                entity.getMealIngredients()
+                        ));
+                    }
+                    Log.d("Repo", "Mapped meals: " + result.size());
+                    return result;
+                });
     }
 }

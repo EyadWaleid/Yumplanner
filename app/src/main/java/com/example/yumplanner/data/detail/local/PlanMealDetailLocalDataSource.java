@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.core.Single;
 
 public class PlanMealDetailLocalDataSource {
     PlanMealDetailDAO planMealDetailDAO;
+
     public PlanMealDetailLocalDataSource(Context context){
         planMealDetailDAO = AppDatabase.getINSTANCE(context).mealDAO();
     }
@@ -30,7 +31,6 @@ public class PlanMealDetailLocalDataSource {
                     else {
                         return  true;
                     }
-
                 }) ;
 
 

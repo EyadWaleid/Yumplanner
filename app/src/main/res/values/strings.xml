@@ -52,5 +52,6 @@
     <string name="canel">Canel</string>
     <string name="classic_ratatouille">Classic Ratatouille</string>
     <string name="some_recommended_desserts">Recommended Desserts</string>
+    <string name="chef_s_fav">Chef\'s fav</string>
 
 </resources>
