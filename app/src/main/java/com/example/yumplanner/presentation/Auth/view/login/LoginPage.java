@@ -150,7 +150,9 @@ public class LoginPage extends Fragment implements LoginView {
     public void navigateToHome() {
                     Intent intent = new Intent(requireContext(), HomeActivity.class);
             startActivity(intent);
-            requireActivity().finish();
+       requireActivity(). overridePendingTransition(R.anim.from_right,R.anim.from_left);
+
+        requireActivity().finish();
     }
 
     @Override

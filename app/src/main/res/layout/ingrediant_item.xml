@@ -22,7 +22,6 @@
         android:fontFamily="@font/latobold"
 
         android:textSize="16sp"
-
         android:text="onion" />
 
     <TextView

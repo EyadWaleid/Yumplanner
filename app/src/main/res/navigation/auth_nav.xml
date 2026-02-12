@@ -13,10 +13,14 @@
         <action
             android:id="@+id/action_loginPage_to_forgetPasswordPage"
             app:destination="@id/forgetPasswordPage"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right"
             app:popUpTo="@id/loginPage" />
         <action
             android:id="@+id/action_loginPage_to_registerPage"
             app:destination="@id/registerPage"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right"
             app:popUpTo="@id/loginPage"
             app:popUpToInclusive="true" />
     </fragment>
@@ -28,6 +32,7 @@
         <action
             android:id="@+id/action_forgetPasswordPage_to_loginPage"
             app:destination="@id/loginPage"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/forgetPasswordPage"
             app:popUpToInclusive="true" />
     </fragment>
@@ -39,6 +44,8 @@
         <action
             android:id="@+id/action_registerPage_to_loginPage"
             app:destination="@id/loginPage"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left"
             app:popUpTo="@id/registerPage"
             app:popUpToInclusive="true" />
     </fragment>

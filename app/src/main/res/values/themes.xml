@@ -2,11 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Yumplanner" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimary">@color/orange</item>
         <item name="backgroundColor">@color/white</item>
         <item name="android:windowIsTranslucent">true</item>
 
     </style>
+
     <style name="TextInputEditText">
         <!--Text input style-->
         <item name="android:layout_width">match_parent</item>
@@ -22,7 +23,8 @@
         <item name="android:drawablePadding">20dp</item>
 
     </style>
-    <style name="TextBtn" parent="Widget.MaterialComponents.Button.TextButton" >
+
+    <style name="TextBtn" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="fontFamily">@font/latoregular</item>
         <item name="fontWeight">600</item>
         <item name="android:textSize">14sp</item>
@@ -31,6 +33,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+
     <style name="TextInputLayoutOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!--storkeColour-->
         <item name="boxStrokeWidth">1dp</item>
@@ -50,10 +53,11 @@
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">15dp</item>
         <!--End Icon Style-->
-        <item name="endIconTint">@color/stroke_colour </item>
+        <item name="endIconTint">@color/stroke_colour</item>
         <!--Hint style-->
         <item name="hintEnabled">false</item>
     </style>
+
     <style name="BtnStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
@@ -68,16 +72,28 @@
         <item name="rippleColor">@color/slogan_grey</item>
         <item name="cornerRadius">12dp</item>
     </style>
+
     <style name="Theme.Yumplanner" parent="Base.Theme.Yumplanner" />
-    <style name="BackGround"> <item name="backgroundTint">@color/white</item>></style>
+
+    <style name="BackGround"><item name="backgroundTint">@color/white</item>>
+    </style>
+
     <style name="RoundedImage12" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
         <item name="color">@color/white</item>
     </style>
+
     <style name="CircularImage" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+    </style>
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
     </style>
 
 

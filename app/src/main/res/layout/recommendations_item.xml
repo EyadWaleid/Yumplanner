@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipeCard"
     android:layout_width="200dp"
     android:layout_height="240dp"
@@ -13,8 +14,7 @@
     app:strokeColor="@color/dark_goldenrod"
     app:strokeWidth="1dp"
     app:rippleColor="@color/dark_goldenrod">
-
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,19 +30,22 @@
             android:layout_height="match_parent"
             android:background="@drawable/bottom_grad"/>
 
-
-
         <TextView
             android:id="@+id/recipeTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/garamond"
             android:text="@string/bleskiver"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textStyle="bold"/>
-    </FrameLayout>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

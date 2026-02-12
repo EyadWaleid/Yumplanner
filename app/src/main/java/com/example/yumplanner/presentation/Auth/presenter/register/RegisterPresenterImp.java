@@ -4,17 +4,20 @@ import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.yumplanner.data.dataSource.auth.remote.AuthCallback;
-import com.example.yumplanner.data.dataSource.auth.repo.AuthRepo;
-import com.example.yumplanner.data.model.User;
-import com.example.yumplanner.presentation.Auth.view.login.LoginView;
+import com.example.yumplanner.data.auth.datasource.remote.AuthCallback;
+import com.example.yumplanner.data.auth.AuthRepo;
+import com.example.yumplanner.data.auth.model.User;
 import com.example.yumplanner.presentation.Auth.view.register.RegisterView;
+import com.example.yumplanner.utiles.sharedpreferance.PrefsHelper;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterPresenterImp  implements  RegisterPresenter{
     private AuthRepo authRepo ;
     private RegisterView registerView;
     Application application;
+
+    MaterialButton guestBtn;
     Activity activity;
     public RegisterPresenterImp(Application application, RegisterView registerView,Activity activity){
         this.authRepo=new AuthRepo(application);
@@ -74,6 +77,15 @@ public class RegisterPresenterImp  implements  RegisterPresenter{
 
             }
         });
+
+    }
+
+    @Override
+    public void enterAsGuest() {
+        PrefsHelper.getInstance(application).setIsGuest(true);
+        registerView.navigateToHome();
+
+
 
     }
 
