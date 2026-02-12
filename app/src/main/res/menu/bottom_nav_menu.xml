@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item
+            android:id="@+id/homeFragment2"
+            android:icon="@drawable/catagories"
+            android:enabled="true"
+            android:iconTint="@color/dark_orange"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_calender"
+            android:enabled="true"
+            android:icon="@drawable/calender"
+            android:iconTint="@color/dark_orange"
+            android:title="Planner" />
+    <item
+        android:id="@+id/favFragment"
+        android:enabled="true"
+    android:icon="@drawable/unfill_fav"
+    android:iconTint="@color/dark_orange"
+    android:title="Fav" ></item>
+
+    <item
+        android:id="@+id/searchFragment"
+        android:enabled="true"
+        android:icon="@drawable/outline_search_24"
+        android:iconTint="@color/dark_orange"
+        android:title="Search"/>
+
+        <item
+            android:id="@+id/profileFragment2"
+            android:enabled="true"
+            android:icon="@drawable/userchef"
+            android:iconTint="@color/dark_orange"
+            android:title="Profile" />
+    </menu>
+

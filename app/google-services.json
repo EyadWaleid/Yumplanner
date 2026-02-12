@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "71435642273",
+    "project_id": "yumplan-209b6",
+    "storage_bucket": "yumplan-209b6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71435642273:android:4234ca59d1a0b8d67d17e0",
+        "android_client_info": {
+          "package_name": "com.example.yumplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71435642273-kqrbaknd0j99p15lfnrog9r237ecq4ki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yumplanner",
+            "certificate_hash": "a65116ccaca19cf56e72c08ef91d6245fe3c955c"
+          }
+        },
+        {
+          "client_id": "71435642273-apoc5jaddg4aklp38ebeu4arr34pjiit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-ZDjA0QyW5pJlFAHyK0adDG0HQPOUGUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71435642273-apoc5jaddg4aklp38ebeu4arr34pjiit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

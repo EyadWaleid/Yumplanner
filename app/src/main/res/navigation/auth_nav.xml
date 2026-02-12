@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav"
+    app:startDestination="@id/loginPage">
+
+    <fragment
+        android:id="@+id/loginPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.login.LoginPage"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" >
+        <action
+            android:id="@+id/action_loginPage_to_forgetPasswordPage"
+            app:destination="@id/forgetPasswordPage"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right"
+            app:popUpTo="@id/loginPage" />
+        <action
+            android:id="@+id/action_loginPage_to_registerPage"
+            app:destination="@id/registerPage"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right"
+            app:popUpTo="@id/loginPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPasswordPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.forgetpassword.ForgetPasswordPage"
+        android:label="fragment_forget_password_page"
+        tools:layout="@layout/fragment_forget_password_page" >
+        <action
+            android:id="@+id/action_forgetPasswordPage_to_loginPage"
+            app:destination="@id/loginPage"
+            app:enterAnim="@anim/from_right"
+            app:popUpTo="@id/forgetPasswordPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerPage"
+        android:name="com.example.yumplanner.presentation.Auth.view.register.RegisterPage"
+        android:label="fragment_register_page"
+        tools:layout="@layout/fragment_register_page" >
+        <action
+            android:id="@+id/action_registerPage_to_loginPage"
+            app:destination="@id/loginPage"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/from_left"
+            app:popUpTo="@id/registerPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
